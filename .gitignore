@@ -1,2 +1,6 @@
 /env
 /links.txt
+sistema_ger_financas_pessoais/sistema_ger_financas_pessoais/__pycache__/
+sistema_ger_financas_pessoais/users/__pycache__/
+sistema_ger_financas_pessoais/users/migrations/__pycache__/
+sistema_ger_financas_pessoais/users/views/__pycache__/
