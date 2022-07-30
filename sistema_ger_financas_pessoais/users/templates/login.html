@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block 'titulo' %}{% endblock %} 
+
+{% block 'head' %}
+{% endblock %}
+
+{% block 'conteudo' %}
+<div class="dentroConteudo">
+
+    {% if status == '0'%}
+        <div class="alerta certo">
+            <p>Cadastro realizado com sucesso!</p> 
+        </div>
+    {% endif %}
+
+
+    <h1>Login</h1>
+
+    <form method="POST" action="{% url 'validaLogin' %}" enctype="multipart/form-data"> {% csrf_token %}
+        
+        <div class="emailUser">
+            <input type="email" name="email" id="email" placeholder="Email" autocomplete="off" required>
+            <!-- <label for="email">Email</label> -->
+        </div>
+
+        <div class="passwordUser">
+            <input type="password" name="password" id="password" placeholder="Senha" minlength="8" required>
+            <!-- <label for="email">Email</label> -->
+        </div>
+
+        <input type="submit" value="Entrar">
+
+        <button>
+            <a href="{% url 'cadastro' %}">
+                Cadastrar
+            </a>
+        </button>
+    </form>
+
+</div>
+{% endblock %}
