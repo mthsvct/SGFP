@@ -15,6 +15,12 @@
         </div>
     {% endif %}
 
+    {% if status == '1'%}
+        <div class="alerta errado">
+            <p>Realize o seu login!</p> 
+        </div>
+    {% endif %}
+
 
     <h1>Login</h1>
 
@@ -37,6 +43,13 @@
                 Cadastrar
             </a>
         </button>
+
+        <button>
+            <a href="{% url 'esqueceuSenha' %}">
+                Esqueceu a senha?
+            </a>
+        </button>
+    
     </form>
 
 </div>

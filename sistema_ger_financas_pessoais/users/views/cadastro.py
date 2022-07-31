@@ -30,7 +30,7 @@ def validaCadastro(request):
     cadastroBD(name, email, password)
 
     return redirect('/user/login/?status=0')
-        
+  
 
 def buscaRepetido(email):
     b = users.find({'email':email})

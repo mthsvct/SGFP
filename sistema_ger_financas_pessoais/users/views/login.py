@@ -1,6 +1,6 @@
 from hashlib import sha256
 from django.http import HttpResponse
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 from .cadastro import db, users
 
 # Create your views here.
@@ -24,7 +24,9 @@ def validaLogin(request):
     elif verificaPass(user[0], password) == False:
         return HttpResponse(f'Senha incorreta!')
 
-    return HttpResponse(f'Entrou')
+    request.session['user'] = {'id': user[0]['id'], 'name': user[0]['name']}
+
+    return redirect('home')
 
 
 def buscaUser(email):
@@ -37,4 +39,9 @@ def verificaPass(user, password):
         return True
     else:
         return False
+
+
+def sair(request):
+    request.session['user'] = None
+    return redirect('/user/login/')
 

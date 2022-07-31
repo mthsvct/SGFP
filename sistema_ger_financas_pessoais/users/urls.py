@@ -7,4 +7,7 @@ urlpatterns = [
     path('validaCadastro/', validaCadastro, name='validaCadastro'),
     path('login/', login, name='login'),
     path('validaLogin/', validaLogin, name='validaLogin'),
+    path('esqueceuSenha/', esqueceuSenha, name='esqueceuSenha'),
+    path('validaEsqueceuSenha/', validaEsqueceuSenha, name='validaEsqueceuSenha'),
+    path('sair/', sair, name='sair')
 ]

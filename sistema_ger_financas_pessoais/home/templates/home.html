@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block 'titulo' %}{% endblock %} 
+
+{% block 'head' %}
+{% endblock %}
+
+{% block 'conteudo' %}
+<div class="dentroConteudo">
+    <h1>Bem vindo, {{user.name}}!</h1>
+
+    <button><a href="{% url 'sair' %}">Sair</a></button>
+
+</div>
+{% endblock %}

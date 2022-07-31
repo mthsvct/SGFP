@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block 'titulo' %}Esqueceu a senha{% endblock %} 
+
+{% block 'head' %}
+{% endblock %}
+
+{% block 'conteudo' %}
+<div class="dentroConteudo">
+
+
+    <h1>Esqueceu a Senha</h1>
+
+    {% if status == '1'%}
+        <div class="alerta errado">
+            <p>A senha e a confirmação de senha estão diferentes!</p> 
+        </div>
+    {% endif %}
+
+    {% if status == '2'%}
+        <div class="alerta errado">
+            <p>O email não foi cadastrado!</p> 
+        </div>
+    {% endif %}
+
+    <form method="POST" action="{% url 'validaEsqueceuSenha' %}" enctype="multipart/form-data"> {% csrf_token %}
+        
+        <div class="emailUser">
+            <input type="email" name="email" id="email" placeholder="Email" autocomplete="off" required>
+        </div>
+
+        <div class="passwordUser">
+            <input type="password" name="password" id="password" placeholder="Nova senha" minlength="8" required>
+        </div>
+
+        <div class="passwordUser">
+            <input type="password" name="confirm_password" id="password" placeholder="Confirme a senha" minlength="8" required>   
+        </div>
+
+        <input type="submit" value="Alterar">
+
+        <button>
+            <a href="{% url 'cadastro' %}">
+                Cadastro
+            </a>
+        </button>
+
+        <button>
+            <a href="{% url 'login' %}">
+                Login
+            </a>
+        </button>
+    
+    </form>
+
+</div>
+{% endblock %}
