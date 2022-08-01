@@ -17,7 +17,7 @@ def validaEsqueceuSenha(request):
 
     if new_p != new_confirm:
         return redirect('/user/esqueceuSenha/?status=1')
-    elif buscaRepetido(email) == 0:
+    elif buscaRepetido(email)['qnt'] == 0:
         return redirect('/user/esqueceuSenha/?status=2')
 
     u = users.find_one({'email': email})

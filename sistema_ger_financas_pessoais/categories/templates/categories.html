@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block 'titulo' %}{% endblock %} 
+
+{% block 'head' %}
+{% endblock %}
+
+{% block 'conteudo' %}
+<div class="dentroConteudo">
+    <h1>Hello World!</h1>
+
+    <div class="categories">
+        {% for i in categories %}
+            <p>{{forloop.counter}}. <strong>{{i.name}}</strong></p>
+        {% endfor %}
+    </div>
+
+    <button><a href="">Cadastrar nova categoria</a></button>
+
+</div>
+{% endblock %}

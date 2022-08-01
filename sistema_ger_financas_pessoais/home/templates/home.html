@@ -9,6 +9,9 @@
 {% block 'conteudo' %}
 <div class="dentroConteudo">
     <h1>Bem vindo, {{user.name}}!</h1>
+    
+    <button><a href="{% url 'renda' %}">Cadastrar renda</a></button>
+    <button><a href="{% url 'categories' %}">Categorias</a></button>
 
     <button><a href="{% url 'sair' %}">Sair</a></button>
 

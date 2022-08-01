@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block 'titulo' %}{% endblock %} 
+
+{% block 'head' %}
+{% endblock %}
+
+{% block 'conteudo' %}
+<div class="dentroConteudo">
+    <h1>Cadastro de Renda</h1>
+
+    {% if status == '1'%}
+        <div class="alerta certo">
+            <p>A renda foi cadastrada com sucesso!</p> 
+        </div>
+    {% endif %}
+
+    <form method="POST" action="{% url 'validaRenda' %}" enctype="multipart/form-data"> {% csrf_token %}
+        
+        <div class="emailUser">
+            <label for="value">Insira o valor da renda mensal:</label>
+            <input type="number" value="0.00" name="valor" step="any" min="0.00" required>
+        </div>
+
+        <input type="submit" value="Cadastrar">
+    
+    </form>
+
+
+</div>
+{% endblock %}

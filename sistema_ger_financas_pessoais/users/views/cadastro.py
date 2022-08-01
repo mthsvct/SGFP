@@ -24,7 +24,7 @@ def validaCadastro(request):
 
     c = buscaRepetido(email)
 
-    if c > 0:
+    if c['qnt'] > 0:
         return redirect('/user/cadastro/?status=1')
         
     cadastroBD(name, email, password)
@@ -33,9 +33,16 @@ def validaCadastro(request):
   
 
 def buscaRepetido(email):
+    # Retorna a quantidade de contas e a conta que possui aquele email, se for encontrado.
     b = users.find({'email':email})
     buscado = len(list(b))
-    return buscado
+
+    if buscado == 0:
+        retorno = {'qnt': buscado, 'user': None}
+    else:
+        retorno = {'qnt': buscado, 'user': b[0]}
+
+    return retorno
 
 
 def cadastroBD(name, email, password):
@@ -47,5 +54,6 @@ def cadastroBD(name, email, password):
         'password': sha256(password.encode()).hexdigest(),
         'renda': float(0)
     }
+    
     users.insert_one(user)
 
