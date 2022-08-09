@@ -10,8 +10,6 @@ categoriesDB = db['categories']
 def categories(request):
     user = verificaLogado(request)
 
-    
-
     if user['logado'] == True:
         ct = pegaCategorias(user['resposta']['id'])
         return render(request, 'categories.html', {
@@ -36,5 +34,9 @@ def pegaCategorias(id_user):
         todos.append(j)
 
     return todos
+
+def cadastrar(request):
+    
+    return render(request, 'cadastrar.html')
 
 # #ffff87

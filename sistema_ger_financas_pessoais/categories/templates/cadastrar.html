@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block 'titulo' %}Cadastrar Categoria{% endblock %} 
+
+{% block 'head' %}
+{% endblock %}
+
+{% block 'conteudo' %}
+<div class="dentroConteudo">
+    <h1>Cadastrar uma nova Categoria</h1>
+
+    <form>
+        <label for="name_categorie">Nome:</label>
+        <input name="name_categorie" id="name_categorie" type="text" maxlength="25" required>
+        
+        <label for="description_categorie">Nome:</label>
+        <textarea name="description_categorie" id="description_categorie"></textarea>
+
+    </form>
+
+</div>
+{% endblock %}

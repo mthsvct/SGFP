@@ -8,7 +8,7 @@
 
 {% block 'conteudo' %}
 <div class="dentroConteudo">
-    <h1>Hello World!</h1>
+    <h1>Categorias</h1>
 
     <div class="categories">
         {% for i in categories %}
@@ -16,7 +16,7 @@
         {% endfor %}
     </div>
 
-    <button><a href="">Cadastrar nova categoria</a></button>
+    <button><a href="{% url 'cadastrarCategories' %}">Cadastrar nova categoria</a></button>
 
 </div>
 {% endblock %}
