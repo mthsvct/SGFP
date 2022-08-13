@@ -12,11 +12,27 @@
 
     <div class="categories">
         {% for i in categories %}
-            <p>{{forloop.counter}}. <strong>{{i.name}}</strong></p>
+            <!-- <div class="cat" style="transition: cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.4s;" onmouseover="poeCor('{{i.color}}', '{{forloop.counter0}}')"> -->
+            <div>
+                <h3>{{forloop.counter}}. <strong>{{i.name}}</strong></h3>
+                <p>{{i.description}}</p>
+            </div>
         {% endfor %}
     </div>
 
-    <button><a href="{% url 'cadastrarCategories' %}">Cadastrar nova categoria</a></button>
+    <button><a href="{% url 'cadastraCat' %}">Cadastrar nova categoria</a></button>
+    <button><a href="{% url 'deleteCat' %}">Excluir uma categoria</a></button>
+    <button><a href="{% url 'editaCat' %}">Editar uma categoria</a></button>
 
 </div>
+
+<script>
+
+    function poeCor(cor, num){
+        /* Isso aqui era apenas um teste que eu estava fazendo, desconsidere, ou se tiver dúvidas pode olhar por aqui. */
+        document.getElementsByClassName('cat')[num].style.backgroundColor = cor
+    }
+
+</script>
+
 {% endblock %}

@@ -10,11 +10,9 @@ from hashlib import sha256
 db = MongoClient('mongodb+srv://matheusV:Z6ds6qWoyRc35cia@sisgerfinp.tlmph32.mongodb.net/?retryWrites=true&w=majority')['sisGerFinP']
 users = db['users']
 
-
 def cadastro(request):
     status = request.GET.get('status')
     return render(request, 'cadastro.html', {'status': status})
-
 
 def validaCadastro(request):
     # [  ] - Fazer a busca para ver se já não há algum usuário com o mesmo email que está tentando se cadastrar
@@ -30,7 +28,6 @@ def validaCadastro(request):
     cadastroBD(name, email, password)
 
     return redirect('/user/login/?status=0')
-  
 
 def buscaRepetido(email):
     # Retorna a quantidade de contas e a conta que possui aquele email, se for encontrado.
@@ -44,16 +41,20 @@ def buscaRepetido(email):
 
     return retorno
 
+def atualizaControl(collection):
+    c = collection.find_one({"id": 0})
+    counter = c['counter'] + 1
+    last_id = c['last_id'] + 1
+    collection.update_one({'id': 0}, {"$set":{'counter': counter, 'last_id': last_id}})
 
 def cadastroBD(name, email, password):
-    count = users.count_documents({})
+    c = users.find_one({"id": 0})
     user = {
-        'id': int(count)+1,
+        'id': c['last_id'] + 1,
         'name': name,
         'email': email,
         'password': sha256(password.encode()).hexdigest(),
         'renda': float(0)
     }
-    
     users.insert_one(user)
-
+    atualizaControl(users)

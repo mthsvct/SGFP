@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block 'titulo' %}{% endblock %} 
+
+{% block 'head' %}
+{% endblock %}
+
+{% block 'conteudo' %}
+<div class="dentroConteudo">
+
+    <h1>Editar Categoria</h1>
+
+    {% if status == '0'%}
+        <div class="alerta certo">
+            <p>Categoria editada com sucesso!</p> 
+        </div>
+    {% endif %}
+
+    <form method="POST" action="{% url 'validaEditCat' idCat %}" enctype="multipart/form-data"> {% csrf_token %}
+
+        <label for="name">Nome:</label>
+        <input name="name" id="name" type="text" maxlength="25" value="{{cat.name}}">
+        
+        <label for="description">Descrição:</label>
+        <textarea name="description" id="description">{{cat.description}}</textarea>
+
+        <label for="colorDesc"></label>
+        <input type="color" name="colorDesc" id="colorDesc" value="{{cat.color}}">
+
+        <input type="submit" value="Editar">
+
+    </form>
+
+</div>
+{% endblock %}

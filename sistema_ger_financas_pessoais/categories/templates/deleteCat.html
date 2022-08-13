@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block 'titulo' %}{% endblock %} 
+
+{% block 'head' %}
+{% endblock %}
+
+{% block 'conteudo' %}
+<div class="dentroConteudo">
+
+    {% if status == '0'%}
+        <div class="alerta certo">
+            <p>Categorias removidas com sucesso!</p> 
+        </div>
+    {% endif %}
+
+    {% if status == '1'%}
+        <div class="alerta errado">
+            <p>Nenhum item foi selecionado!</p> 
+        </div>
+    {% endif %}
+
+    <h1>Excluir Categoria!</h1>
+    
+    <form method="POST" action="{% url 'validaDeleteCat' %}" enctype="multipart/form-data"> {% csrf_token %}
+
+        <div class="opcoes">
+            
+            {% if qnt > 0 %}
+
+                <p>Selecione as categorias personalizadas a serem deletadas:</p>
+                
+                {% for i in categorias %}
+                <div class="opcao">
+                        <input type="checkbox" name="select{{i.id}}" id="{{i.id}}">
+                        <label for="{{i.id}}">{{i.name}}</label>
+                    </div>
+                {% endfor %}
+                
+                <input type="submit" value="Apagar">
+            
+            {% else %}
+                <p>Todas as categorias personalizadas foram apagadas.</p>
+            {% endif %}
+
+        </div>
+
+    </form>
+
+
+</div>
+{% endblock %}

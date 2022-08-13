@@ -10,12 +10,23 @@
 <div class="dentroConteudo">
     <h1>Cadastrar uma nova Categoria</h1>
 
-    <form>
-        <label for="name_categorie">Nome:</label>
-        <input name="name_categorie" id="name_categorie" type="text" maxlength="25" required>
+    {% if status == '0'%}
+        <div class="alerta certo">
+            <p>Cadastro realizado com sucesso!</p> 
+        </div>
+    {% endif %}
+
+    <form method="POST" action="{% url 'validaCadCategories' %}" enctype="multipart/form-data"> {% csrf_token %}
+        <label for="name">Nome:</label>
+        <input name="name" id="name" type="text" maxlength="25" required>
         
-        <label for="description_categorie">Nome:</label>
-        <textarea name="description_categorie" id="description_categorie"></textarea>
+        <label for="description">Descrição:</label>
+        <textarea name="description" id="description"></textarea>
+
+        <label for="colorDesc"></label>
+        <input type="color" name="colorDesc" id="colorDesc">
+
+        <input type="submit" value="Cadastrar">
 
     </form>
 

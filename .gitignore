@@ -15,3 +15,5 @@ sistema_ger_financas_pessoais/categories/__pycache__/urls.cpython-38.pyc
 sistema_ger_financas_pessoais/categories/migrations/__pycache__/__init__.cpython-38.pyc
 sistema_ger_financas_pessoais/categories/views/__pycache__/__init__.cpython-38.pyc
 sistema_ger_financas_pessoais/categories/views/__pycache__/categories.cpython-38.pyc
+sistema_ger_financas_pessoais/categories/views/__pycache__/delete.cpython-38.pyc
+sistema_ger_financas_pessoais/categories/views/__pycache__/edita.cpython-38.pyc

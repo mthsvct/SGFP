@@ -1,0 +1,37 @@
+{% extends 'baseListaCats.html' %}
+{% load static %}
+
+{% block 'titulo' %}{% endblock %} 
+
+{% block 'head' %}
+{% endblock %}
+
+{% block 'conteudo' %}
+<div class="dentroConteudo">
+    <h1>Editar Categorias!</h1>
+
+    
+    <div class="opcoes">
+        {% for i in categorias %}
+            <div class="opcao" style="border: 1px solid black; width: 30%; min-height: 70px;">
+                <a href="{% url 'edit' i.id %}">
+                    <h4>{{i.name}}</h4>
+                    <p>{{i.description}}</p>
+
+                    <div class="botaoCor" style="height: 50px; width: 100px; background-color: '{{i.color}}';">
+                        <p class="corzinha" style="display: none;">{{i.color}}</p>
+                    </div>
+                    <div class="formulario" style="display: none;">
+
+                    </div>
+                </a>
+            </div>
+        {% endfor %}
+    </div>
+    
+    
+</div>
+
+<script></script>
+
+{% endblock %}
