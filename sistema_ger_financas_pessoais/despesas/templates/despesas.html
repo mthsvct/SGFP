@@ -10,6 +10,18 @@
 <div class="dentroConteudo">
     <h1>Despesas</h1>
 
+    <div class="listagem">
+        <ul>
+            {% for i in despesas %}
+                <li>
+                    <h5>{{i.name}}</h5>
+                    <p>{{i.description}}</p>
+                    <p>{{i.valor}}R$</p>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+
     <button><a href="{% url 'cadastrarDes' %}">Cadastrar</a></button>
     <button><a href="{% url 'deleteDes' %}">Excluir</a></button>
     <button><a href="{% url 'editarDes' %}">Editar</a></button>

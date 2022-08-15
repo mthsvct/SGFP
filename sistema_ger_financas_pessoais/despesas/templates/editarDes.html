@@ -9,5 +9,24 @@
 {% block 'conteudo' %}
 <div class="dentroConteudo">
     <h1>Editar Despesa</h1>
+
+
+    <div class="opcoes">
+        {% if qnt != 0 %}
+            {% for i in despesas %}
+                <div class="opcao" style="border: 1px solid black; width: 30%; min-height: 70px;">
+                    <a href="{% url 'editDes' i.id %}">
+                        <h4>{{i.name}}</h4>
+                        <p>{{i.description}}</p>
+                        <p>{{i.valor}}</p>
+                    </a>
+                </div>
+            {% endfor %}
+        {% else %}
+            <p>Nenhuma despesa foi cadastrada.</p>
+        {% endif %}
+        
+    </div>
+
 </div>
 {% endblock %}

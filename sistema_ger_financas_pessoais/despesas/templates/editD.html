@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block 'titulo' %}{% endblock %} 
+
+{% block 'head' %}
+{% endblock %}
+
+{% block 'conteudo' %}
+<div class="dentroConteudo">
+    <h1>Editar "{{despesa.name}}"</h1>
+
+    {% if status == '0'%}
+        <div class="alerta certo">
+            <p>Despesa editada com sucesso!</p> 
+        </div>
+    {% endif %}
+
+    <form method="POST" action="{% url 'validaEditDes' despesa.id %}" enctype="multipart/form-data"> {% csrf_token %}
+
+        <div>
+            <label for="name">Nome:</label>
+            <input name="name" id="name" type="text" maxlength="25" autocomplete="off" value="{{despesa.name}}">
+        </div>
+        
+        <div>
+            <label for="description">Descrição:</label>
+            <textarea name="description" id="description">{{despesa.description}}</textarea>
+        </div>
+
+        <div>
+            <label for="valor">Valor:</label>
+            <input type="number" id="valor" value="{{despesa.valor}}" name="valor" step="any" min="0.01">
+        </div>
+        
+        <div>
+            <label for="vencimento">Data de Vencimento:</label>
+            <input type="date" name="vencimento" id="vencimento" value="{{despesa.vencimento}}">    
+        </div>
+        
+        <div>
+            <label for="categoria">Categoria:</label>
+            <select name="categoria" id="selCat">
+                {% for i in categorias %}
+
+                    {% if i.id == despesa.categoria %}
+                        <option value="{{i.id}}" selected>{{i.name}}</option>
+                    {% else %}
+                        <option value="{{i.id}}">{{i.name}}</option>
+                    {% endif %}
+
+                {% endfor %}
+            </select>    
+        </div>
+
+        <div>
+            <input type="submit" value="Editar">    
+        </div>
+
+    </form>
+</div>
+{% endblock %}

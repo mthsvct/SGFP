@@ -9,5 +9,34 @@
 {% block 'conteudo' %}
 <div class="dentroConteudo">
     <h1>Excluir Despesa</h1>
+
+    {% if status == '0'%}
+        <div class="alerta certo">
+            <p>Categorias removidas com sucesso!</p> 
+        </div>
+    {% endif %}
+
+    {% if status == '1'%}
+        <div class="alerta errado">
+            <p>Nenhum item foi selecionado!</p> 
+        </div>
+    {% endif %}
+
+    <p>Selecione as despesas que deseja excluir: </p>
+    <form method="POST" action="{% url 'validaDeleteDes' %}" enctype="multipart/form-data"> {% csrf_token %}
+        {% if qnt > 0 %}
+            {% for i in despesas %}
+                <div>
+                    <input type="checkbox" name="select{{i.id}}" id="{{i.id}}">
+                    <label for="{{i.id}}">{{i.name}}</label> 
+                </div>
+            {% endfor %}
+            <input type="submit" value="Excluir">
+        {% else %}
+            <p>Todas as despesas foram apagadas.</p>
+        {% endif %}
+
+    </form>
+
 </div>
 {% endblock %}

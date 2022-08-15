@@ -8,7 +8,15 @@ from users.views import db, atualizaControl
 despesasDB = db['despesas']
 
 def despesas(request):
+    id_user = request.session['user']['id']
+    despesas = list(despesasDB.find({'id_user': id_user}))
+    qnt = len(despesas)
+    return render(request, 'despesas.html', {
+        'id_user': id_user, 
+        'despesas': despesas, 
+        'qnt': qnt
+        }
+    )
 
 
 
-    return render(request, 'despesas.html')

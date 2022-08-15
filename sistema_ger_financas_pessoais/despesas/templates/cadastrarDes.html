@@ -9,5 +9,53 @@
 {% block 'conteudo' %}
 <div class="dentroConteudo">
     <h1>Cadastrar Despesa</h1>
+
+    {% if status == '0'%}
+        <div class="alerta certo">
+            <p>Cadastro realizado com sucesso!</p> 
+        </div>
+    {% endif %}
+
+    <form style="display: flex; flex-direction: column;" method="POST" action="{% url 'validaCadDes' %}" enctype="multipart/form-data"> {% csrf_token %}
+
+        <div>
+            <label for="name">Nome:</label>
+            <input name="name" id="name" type="text" maxlength="25" required autocomplete="off">
+        </div>
+        
+        <div>
+            <label for="description">Descrição:</label>
+            <textarea name="description" id="description"></textarea>
+        </div>
+
+        <div>
+            <label for="valor">Valor:</label>
+            <input type="number" value="1.00" id="valor" name="valor" step="any" min="0.01">
+        </div>
+        
+        <div>
+            <label for="vencimento">Data de Vencimento:</label>
+            <input type="date" name="vencimento" id="vencimento" value="{{hoje}}">    
+        </div>
+        
+        <div>
+            <label for="categoria">Categoria:</label>
+            <select name="categoria" id="selCat" required>
+                {% for i in categorias %}
+
+                    <!-- {% if forloop.counter0 == 0 %}
+                        <option disabled selected value="-1"> -- select an option -- </option>
+                    {% endif %} -->
+                    <option value="{{i.id}}">{{i.name}}</option>
+                {% endfor %}
+            </select>    
+        </div>
+
+        <div>
+            <input type="submit" value="Cadastrar">    
+        </div>
+        
+    </form>
+
 </div>
 {% endblock %}
