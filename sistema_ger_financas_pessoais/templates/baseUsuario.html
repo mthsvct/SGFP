@@ -17,7 +17,7 @@
 
 		<header>
             <div class="logo">
-                <a href="home.html">
+                <a href="{% url 'home' %}">
                     <img src="{% static 'img/logo.svg' %}" alt="Logo">
                     <p>MinhasFinanças</p>
                 </a>
@@ -36,15 +36,15 @@
 
 		<footer>
 			<div class="logo">
-                <a href="home.html">
+                <a href="{% url 'home' %}">
                     <img src="{% static 'img/logo.svg' %}" alt="Logo">
                     <p>MinhasFinanças</p>
                 </a>
             </div>
     
             <div class="paginas">
-                <a href="sobre.html">Sobre</a>
-                <a href="contato.html">Contato</a>
+                <a href="#">Sobre</a>
+                <a href="#">Contato</a>
             </div>
     
             <div class="redesSociais">
@@ -57,10 +57,10 @@
                 <a href="#">
                     <img src="{% static 'img/bi_github.svg' %}" alt="">
                 </a>
-                <a href="">
+                <a href="#">
                     <img src="{% static 'img/bi_twitter.svg' %}" alt="">
                 </a>
-                <a href="">
+                <a href="#">
                     <img src="{% static 'img/bi_linkedin.svg' %}" alt="">
                 </a>
             </div>

@@ -1,5 +1,19 @@
-{% extends 'base.html' %} {% load static %} {% block 'titulo' %}{% endblock %}
-{% block 'head' %} {% endblock %} {% block 'conteudo' %} {% if status == '0'%}
+{% extends 'base.html' %} 
+
+
+{% load static %}
+
+{% block 'titulo' %}Login{% endblock %}
+
+
+
+{% block 'head' %}{% endblock %} 
+
+
+{% block 'conteudo' %} 
+
+
+{% if status == '0'%}
 <div class="alerta certo">
     <p>Cadastro realizado com sucesso!</p>
 </div>
