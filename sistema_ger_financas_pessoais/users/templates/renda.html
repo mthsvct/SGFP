@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends 'baseUsuario.html' %}
 {% load static %}
 
 {% block 'titulo' %}{% endblock %} 
@@ -7,8 +7,7 @@
 {% endblock %}
 
 {% block 'conteudo' %}
-<div class="dentroConteudo">
-    <h1>Cadastro de Renda</h1>
+    <h2>Cadastro de renda</h2>
 
     {% if status == '1'%}
         <div class="alerta certo">
@@ -16,17 +15,18 @@
         </div>
     {% endif %}
 
-    <form method="POST" action="{% url 'validaRenda' %}" enctype="multipart/form-data"> {% csrf_token %}
+    <form method="POST" class="camp" action="{% url 'validaRenda' %}" enctype="multipart/form-data"> {% csrf_token %}
         
-        <div class="emailUser">
+        <div class="camp">
             <label for="value">Insira o valor da renda mensal:</label>
             <input type="number" value="0.00" name="valor" step="any" min="0.00" required>
         </div>
 
-        <input type="submit" value="Cadastrar">
+        <div class="camp">
+            <button type="submit" class="bt2">Cadastrar</button>
+        </div>
+
     
     </form>
 
-
-</div>
 {% endblock %}

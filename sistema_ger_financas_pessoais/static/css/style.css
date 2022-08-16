@@ -1,0 +1,222 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter&family=Montserrat&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    background-color: #F7F8F3;
+    font-family: 'Montserrat', sans-serif;
+    text-decoration: none;
+    color: #000;
+    /*outline: 1px solid red; */
+}
+
+header{
+    margin: 0.063rem 0;
+    padding: 0.938rem 2.5rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    border: 1px solid #29292E;
+    border-radius: 10px;
+}
+
+a{ 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+}
+
+.logo{
+    display: flex;
+    flex-direction: column;
+    align-items: center;   
+}
+
+.logo p{
+    font-family: 'Inter', sans-serif;
+    font-weight: bold;
+    font-size: 20px;
+    margin-top: 0.313rem;
+}
+
+.logo img{
+    width: 70px;
+    height: 70px;
+    display: flex;
+    align-items: center;
+}
+
+nav{
+    display: flex;
+    flex-direction: row;
+    padding: 0 2.5rem;
+    align-items: center;
+    justify-content: space-between;
+}
+
+button{
+    font-family: 'Inter', sans-serif;
+    font-weight: bold;
+    font-size: 24px;
+    text-transform: uppercase;
+    padding: 0.313rem 1.875rem;
+    border-radius: 20px;
+    border: none;
+    cursor: pointer;
+}
+
+.bt1{
+    background-color: #AEEEE0;
+    color: #012C3D;
+    margin-right: 1.25rem;
+}
+
+.bt2{
+    background-color: #4BB9AF;
+    color: #F7F8F3;
+}
+
+main{
+    display: flex;
+    border: 1px solid #29292E;
+    border-radius: 10px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2.5rem 0;
+    /* padding: 200px;
+    margin: 10px 0; */
+}
+
+.space{
+    padding: 200px;
+}
+
+footer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 1px solid #29292E;
+    border-radius: 10px;
+    padding: 1.875rem 0;
+}
+
+.paginas{
+    padding: 1.25rem 2.5rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    font-size: 24px;
+    
+}
+
+.paginas a{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 1.25rem;
+}
+
+.redesSociais{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.redesSociais a{
+    margin: 0 1.25rem;
+}
+
+.camp{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0.313rem 0;
+}
+
+h2{
+    font-size: 48px;
+    font-weight: normal;
+    padding: 0.313rem 0;
+    margin-bottom: 0.938rem;
+}
+
+input{
+    border: 2px solid #29292E;
+    border-radius: 15px;
+    width: 450px;
+    padding: 1.25rem 0.625rem;
+    font-size: 20px;
+}
+
+textarea, select{
+    border: 2px solid #29292E;
+    border-radius: 10px;
+    width: 450px;
+    padding: 1.25rem 0.625rem;
+    font-size: 20px;
+}
+
+label{
+    font-size: 24px;
+}
+
+.line{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin: 1.2rem;
+}
+
+span{
+    color: gray;
+    text-decoration: underline gray;
+    margin: 0.625rem 0;
+}
+
+@media only screen and (max-width: 767px) {
+    .logo img{
+        width: 40px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+    }
+
+    .logo p{
+        font-family: 'Inter', sans-serif;
+        font-weight: bold;
+        font-size: 12px;
+        margin-top: 5px;
+    }
+
+    .paginas{
+        font-size: 18px;
+    }
+
+    .redesSociais img{
+        width: 30px;
+        height: 30px;
+    }
+
+    h2{
+        font-size: 32px;
+        font-weight: normal;
+        padding: 5px 0; 
+    }
+
+    input{
+        border: 2px solid #29292E;
+        border-radius: 10px;
+        width: 300px;
+        padding: 10px 5px;
+    }
+
+    label{
+        font-size: 18px;
+    }
+    
+    button{
+        font-size: 18px;
+    }
+}

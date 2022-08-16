@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends 'baseUsuario.html' %}
 {% load static %}
 
 {% block 'titulo' %}{% endblock %} 
@@ -7,8 +7,7 @@
 {% endblock %}
 
 {% block 'conteudo' %}
-<div class="dentroConteudo">
-    <h1>Excluir Despesa</h1>
+    <h2>Excluir Despesa</h2>
 
     {% if status == '0'%}
         <div class="alerta certo">
@@ -26,17 +25,18 @@
     <form method="POST" action="{% url 'validaDeleteDes' %}" enctype="multipart/form-data"> {% csrf_token %}
         {% if qnt > 0 %}
             {% for i in despesas %}
-                <div>
+                <div class="line">
                     <input type="checkbox" name="select{{i.id}}" id="{{i.id}}">
                     <label for="{{i.id}}">{{i.name}}</label> 
                 </div>
             {% endfor %}
-            <input type="submit" value="Excluir">
+            <div class="camp">
+                <button class="bt2" type="submit" value="Excluir">Excluir</button>
+            </div>
         {% else %}
             <p>Todas as despesas foram apagadas.</p>
         {% endif %}
 
     </form>
 
-</div>
 {% endblock %}

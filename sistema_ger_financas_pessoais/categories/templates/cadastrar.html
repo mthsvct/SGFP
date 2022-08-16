@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends 'baseUsuario.html' %}
 {% load static %}
 
 {% block 'titulo' %}Cadastrar Categoria{% endblock %} 
@@ -7,8 +7,7 @@
 {% endblock %}
 
 {% block 'conteudo' %}
-<div class="dentroConteudo">
-    <h1>Cadastrar uma nova Categoria</h1>
+    <h2>Cadastrar uma nova Categoria</h2>
 
     {% if status == '0'%}
         <div class="alerta certo">
@@ -16,7 +15,7 @@
         </div>
     {% endif %}
 
-    <form method="POST" action="{% url 'validaCadCategories' %}" enctype="multipart/form-data"> {% csrf_token %}
+    <form method="POST" class="camp" action="{% url 'validaCadCategories' %}" enctype="multipart/form-data"> {% csrf_token %}
         <label for="name">Nome:</label>
         <input name="name" id="name" type="text" maxlength="25" required>
         
@@ -26,9 +25,7 @@
         <label for="colorDesc"></label>
         <input type="color" name="colorDesc" id="colorDesc">
 
-        <input type="submit" value="Cadastrar">
+        <input type="submit" class="bt2" value="Cadastrar">
 
     </form>
-
-</div>
 {% endblock %}

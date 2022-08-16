@@ -10,10 +10,9 @@
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link rel="shortcut icon" href="{% static 'img/logo.svg' %}" type="image/x-icon">
 		<link rel="stylesheet" href="{% static 'css/style.css' %}">
-		{% block 'head' %} {% endblock %}
+		<link rel="stylesheet" href="{% static 'css/usuario.css' %}">
+        {% block 'head' %} {% endblock %}
 	</head>
-
-
 	<body>
 
 		<header>
@@ -25,8 +24,9 @@
             </div>
     
             <nav class="opcoes">
-                <a href="{% url 'login' %}"><button class="bt1">Login</button></a>
-                <a href="{% url 'cadastro' %}" ><button class="bt2">Cadastro</button></a>
+                <a href="#"><img src="{% static 'img/profile.svg' %}" alt=""></a>
+                <a href="#"><img src="{% static 'img/notification.svg' %}" alt=""></a>
+                <a href="#"><img src="{% static 'img/menu.svg' %}" alt=""></a>
             </nav>
 		</header>
 
@@ -68,5 +68,6 @@
 
 	</body>
 
-	<script></script>
+    <script></script>
+	
 </html>

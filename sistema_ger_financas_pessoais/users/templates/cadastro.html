@@ -7,7 +7,8 @@
 {% endblock %}
 
 {% block 'conteudo' %}
-<div class="dentroConteudo">
+
+    <h2>Cadastro</h2>
 
     {% if status == '1'%}
         <div class="alerta errado">
@@ -18,34 +19,37 @@
 
     <form method="POST" action="{% url 'validaCadastro' %}" enctype="multipart/form-data"> {% csrf_token %}
 
-        <div class="userName">
-            <input type="text" name="userName" id="user_name" placeholder="Nome" autocomplete="off" required>
-            <!-- <label for="email">Email</label> -->
+        <div class="camp userName">
+            <label for="userName">Nome</label>
+            <input type="text" name="userName" id="user_name" placeholder="" autocomplete="off" required>
         </div>
 
-        <div class="emailUser">
-            <input type="email" name="email" id="email" placeholder="Email" autocomplete="off" required>
+        <div class="camp emailUser">
+            <label for="email">Email</label>
+            <input type="email" name="email" id="email" placeholder="" autocomplete="off" required>
         </div>
 
-        <div class="passwordUser">
-            <input type="password" name="password" id="password" placeholder="Senha" minlength="8" required>
+        <div class="camp passwordUser">
+            <label for="password">Senha</label>
+            <input type="password" name="password" id="password" placeholder="" minlength="8" required>
         </div>
 
         <!-- <div class="passwordUser">
             <input type="password" name="confirm_password" id="password" placeholder="Confirme a senha" minlength="8" required>
         </div> -->
 
-        <input type="submit" value="Cadastrar">
+        <div class="camp">
+            <button class="bt2" type="submit" value="Cadastrar">Cadastrar</button>
+        </div>
+        
 
-        <button>
+        <!-- <button>
             <a href="{% url 'login' %}">
                 Login
             </a>
-        </button>
+        </button> -->
 
     </form>
 
 
-
-</div>
 {% endblock %}

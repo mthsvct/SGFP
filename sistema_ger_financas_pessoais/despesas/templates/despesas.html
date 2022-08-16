@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends 'baseUsuario.html' %}
 {% load static %}
 
 {% block 'titulo' %}{% endblock %} 
@@ -7,8 +7,7 @@
 {% endblock %}
 
 {% block 'conteudo' %}
-<div class="dentroConteudo">
-    <h1>Despesas</h1>
+    <h2>Despesas</h2>
 
     <div class="listagem">
         <ul>
@@ -22,8 +21,10 @@
         </ul>
     </div>
 
-    <button><a href="{% url 'cadastrarDes' %}">Cadastrar</a></button>
-    <button><a href="{% url 'deleteDes' %}">Excluir</a></button>
-    <button><a href="{% url 'editarDes' %}">Editar</a></button>
-</div>
+    <div class="line">
+        <a href="{% url 'cadastrarDes' %}"><button class="bt2 line">Cadastrar</button></a>
+        <a href="{% url 'deleteDes' %}"><button class="bt2 line">Excluir</button></a>
+        <a href="{% url 'editarDes' %}"><button class="bt2 line">Editar</button></a>
+    </div>
+    
 {% endblock %}

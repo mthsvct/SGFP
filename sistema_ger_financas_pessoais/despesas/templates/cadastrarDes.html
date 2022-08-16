@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends 'baseUsuario.html' %}
 {% load static %}
 
 {% block 'titulo' %}{% endblock %} 
@@ -7,8 +7,7 @@
 {% endblock %}
 
 {% block 'conteudo' %}
-<div class="dentroConteudo">
-    <h1>Cadastrar Despesa</h1>
+    <h2>Cadastrar Despesa</h2>
 
     {% if status == '0'%}
         <div class="alerta certo">
@@ -18,27 +17,27 @@
 
     <form style="display: flex; flex-direction: column;" method="POST" action="{% url 'validaCadDes' %}" enctype="multipart/form-data"> {% csrf_token %}
 
-        <div>
+        <div class="camp">
             <label for="name">Nome:</label>
             <input name="name" id="name" type="text" maxlength="25" required autocomplete="off">
         </div>
         
-        <div>
+        <div class="camp">
             <label for="description">Descrição:</label>
             <textarea name="description" id="description"></textarea>
         </div>
 
-        <div>
+        <div class="camp">
             <label for="valor">Valor:</label>
             <input type="number" value="1.00" id="valor" name="valor" step="any" min="0.01">
         </div>
         
-        <div>
+        <div class="camp">
             <label for="vencimento">Data de Vencimento:</label>
             <input type="date" name="vencimento" id="vencimento" value="{{hoje}}">    
         </div>
         
-        <div>
+        <div class="camp">
             <label for="categoria">Categoria:</label>
             <select name="categoria" id="selCat" required>
                 {% for i in categorias %}
@@ -51,11 +50,10 @@
             </select>    
         </div>
 
-        <div>
-            <input type="submit" value="Cadastrar">    
+        <div class="camp">
+            <button type="submit" value="Cadastrar" class="bt2">Cadastrar</button>   
         </div>
         
     </form>
 
-</div>
 {% endblock %}

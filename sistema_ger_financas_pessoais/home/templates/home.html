@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends 'baseUsuario.html' %}
 {% load static %}
 
 {% block 'titulo' %}{% endblock %} 
@@ -7,14 +7,12 @@
 {% endblock %}
 
 {% block 'conteudo' %}
-<div class="dentroConteudo">
     <h1>Bem vindo, {{user.name}}!</h1>
-    
-    <button><a href="{% url 'renda' %}">Cadastrar renda</a></button>
-    <button><a href="{% url 'categories' %}">Categorias</a></button>
-    <button><a href="{% url 'despesas' %}">Despesas</a></button>
+    <div class="line"> 
+        <a href="{% url 'renda' %}"><button class="line bt2">Cadastrar renda</button></a>
+        <a href="{% url 'categories' %}"><button class="line bt2">Categorias</button></a>
+        <a href="{% url 'despesas' %}"><button class="line bt2">Despesas</button></a>
 
-    <button><a href="{% url 'sair' %}">Sair</a></button>
-
-</div>
+        <a href="{% url 'sair' %}"><button class="line bt2">Sair</button></a>
+    </div>
 {% endblock %}
