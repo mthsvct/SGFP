@@ -1,3 +1,4 @@
+from datetime import date
 from django.shortcuts import redirect, render
 from django.http import HttpResponse
 import pymongo
@@ -54,7 +55,77 @@ def cadastroBD(name, email, password):
         'name': name,
         'email': email,
         'password': sha256(password.encode()).hexdigest(),
-        'renda': float(0)
+        'renda': {
+            'saldo': float(0),
+            'renda_mensal': float(0),
+            'data': date.today().strftime("%Y-%m-%d")
+        }
     }
     users.insert_one(user)
     atualizaControl(users)
+    cadUserCategorie(user['id'])
+    cadUserDespesas(user['id'])
+
+def cadUserCategorie(id_user):
+    cat = {
+        "id_user": id_user,
+        "control": {
+            "counter": 8,
+	        "last_id": 8,
+        },
+        "itens": [ 
+            {
+                "id": 1,
+                "name": "Super-Mercado",
+                "description": "Comida, limpeza, produtos",
+                "color": "#ffff87"
+            },{
+                "id": 2,
+                "name": "Aluguel",
+                "description": "Moradia",
+                "color": "#ffff87"
+            },{
+                "id": 3,
+                "name": "Energia",
+                "description": "Conta de Luz",
+                "color": "#ffff87"
+            },{
+                "id": 4,
+                "name": "Combustivel",
+                "description": "Gasto em Combustivel",
+                "color": "#ffff87"
+            },{
+                "id": 5,
+                "name": "Internet",
+                "description": "Internet",
+                "color": "#ffff87"
+            },{
+                "id": 6,
+                "name": "Água",
+                "description": "Água",
+                "color": "#ffff87"
+            },{
+                "id": 7,
+                "name": "Gás",
+                "description": "Gás",
+                "color": "#ffff87"
+            },{
+                "id": 8,
+                "name": "Transporte Público",
+                "description": "Transporte Público",
+                "color": "#ffff87"
+            }
+	    ]
+    }
+    db['categories'].insert_one(cat)
+
+def cadUserDespesas(id_user):
+    d = {
+        "id_user": id_user,
+        "control": {
+            "counter": 0,
+            "last_id": 0,
+        },
+        "itens": []
+    }
+    db['despesas'].insert_one(d)

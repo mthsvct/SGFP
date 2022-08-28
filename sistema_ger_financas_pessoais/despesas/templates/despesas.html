@@ -1,7 +1,7 @@
 {% extends 'baseUsuario.html' %}
 {% load static %}
 
-{% block 'titulo' %}{% endblock %} 
+{% block 'titulo' %}Despesas{% endblock %} 
 
 {% block 'head' %}
 {% endblock %}
@@ -9,16 +9,28 @@
 {% block 'conteudo' %}
     <h2>Despesas</h2>
 
+
+
     <div class="listagem">
-        <ul>
-            {% for i in despesas %}
-                <li>
-                    <h5>{{i.name}}</h5>
-                    <p>{{i.description}}</p>
-                    <p>{{i.valor}}R$</p>
-                </li>
-            {% endfor %}
-        </ul>
+
+        {% if qnt > 0 %}
+
+            <ul>
+                {% for i in despesas %}
+                    <li>
+                        <h5>{{i.name}}</h5>
+                        <p>{{i.description}}</p>
+                        <p>{{i.valor.completo}}R$</p>
+                    </li>
+                {% endfor %}
+            </ul>
+        
+        {% else %}
+
+            <p>Nenhuma despesa cadastrada.</p>
+            
+        {% endif %}
+
     </div>
 
     <div class="line">

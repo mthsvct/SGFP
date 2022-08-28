@@ -18,27 +18,33 @@ def deleteCat(request):
         }
     )
 
-def deleteDB(deletes, collection):
+def  deleteDB(deletes, collection, id_user):
+    c = collection.find_one({'id_user': id_user})
     for i in deletes:
-        collection.delete_one({'id': i})
-        c = collection.find_one({"id": 0})
-        counter = c['counter'] - 1
-        collection.update_one({'id': 0}, {"$set":{'counter': counter}})
+        c['itens'].pop( i['index'] )
+    c['control']['counter'] = len( c['itens'] )
+    collection.update_one(
+        {'id_user': id_user},
+        {"$set": c}
+    ) # Atualiza
 
 def pegaSelecoesDelete(post, id_user, collection):
     deletes = []
-    for i in list(collection.find({'id_user': id_user})):
-        print(f'select{i["id"]}')
+    d = collection.find_one({'id_user': id_user})
+    
+    for j, i in enumerate(d['itens']):
         if (f'select{i["id"]}') in post:
-            deletes.append(i['id'])
+            deletes.append(
+               {'id': i['id'], 'index': j}
+            )
+
     return deletes
 
 def validaDeleteCat(request):
-    deletes = pegaSelecoesDelete(request.POST, request.session['user']['id'], categoriesDB)
-
+    id_user = request.session['user']['id']
+    deletes = pegaSelecoesDelete(request.POST, id_user, categoriesDB)
     if len(deletes) > 0:
-        deleteDB(deletes, categoriesDB)
+        deleteDB(deletes, categoriesDB, id_user)
     else:
         return redirect('/categories/deleteCat/?status=1')
-
     return redirect('/categories/deleteCat/?status=0')

@@ -6,22 +6,23 @@ from categories.views import pegaSelecoesDelete, deleteDB
 
 def deleteDes(request):
     id_user = request.session['user']['id']
-    despesas = list(despesasDB.find({'id_user': id_user}))
+    despesas = despesasDB.find_one({'id_user': id_user})
     status = request.GET.get('status')
-    qnt = len(despesas)
+    qnt = len(despesas['itens'])
     return render(request, 'deleteDes.html', {
         'id_user': id_user, 
-        'despesas': despesas,
+        'despesas': despesas['itens'],
         'status': status,
         'qnt': qnt
         }
     )
 
 def validaDeleteDes(request):
-    deletes = pegaSelecoesDelete(request.POST, request.session['user']['id'], despesasDB)
+    id_user = request.session['user']['id']
+    deletes = pegaSelecoesDelete(request.POST, id_user, despesasDB)
     
     if len(deletes) > 0:
-        deleteDB(deletes, despesasDB)
+        deleteDB(deletes, despesasDB, id_user)
     else:
         return redirect('/despesas/deleteDes/?status=1')
     

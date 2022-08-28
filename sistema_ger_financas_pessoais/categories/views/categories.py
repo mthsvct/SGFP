@@ -15,7 +15,7 @@ def categories(request):
         status = request.GET.get('status')
         return render(request, 'categories.html', {
             'user': user['resposta'],
-            'categories': ct,
+            'categories': ct['itens'],
             'status': status
             }
         )
@@ -23,19 +23,8 @@ def categories(request):
         return user['resposta']
 
 def pegaCategorias(id_user):
-
-    padroes = list(categoriesDB.find({'id_user': -1}))
-    personalizadas = list(categoriesDB.find({'id_user': id_user}))
-
-    todos = []
-
-    for i in padroes:
-        todos.append(i)
-
-    for j in personalizadas:
-        todos.append(j)
-
-    return todos
+    retorno = categoriesDB.find_one({'id_user': id_user})
+    return retorno
 
 def cadastraCat(request):
     status = request.GET.get('status')
@@ -47,19 +36,20 @@ def validaCadCategories(request):
     description = request.POST['description'],
     colorDesc = request.POST['colorDesc']
     cadCategorieBD(name, description, colorDesc, a['id'])
-    return redirect('/categories/cadastrar/?status=0')
+    return redirect('/categories/cadastraCat/?status=0')
 
 def cadCategorieBD(name, description, color, id_user):
-    c = categoriesDB.find_one({"id": 0})
+    categorias = pegaCategorias(id_user)
     cate = {
-        'id': c['last_id'] + 1,
+        'id': categorias['control']['last_id'] + 1,
         'name': name,
         'description': description[0],
-        'color': color,
-        'type': 1,
-        'id_user': id_user
+        'color': color
     }
-    categoriesDB.insert_one(cate)
-    atualizaControl(categoriesDB)
+    categorias['control']['counter'] = categorias['control']['counter'] + 1
+    categorias['control']['last_id'] = categorias['control']['last_id'] + 1
+    categorias['itens'].append(cate)
+    
+    categoriesDB.update_one({'id_user': id_user},  {"$set": categorias })
 
 # #ffff87

@@ -18,8 +18,18 @@
     <form method="POST" class="camp" action="{% url 'validaRenda' %}" enctype="multipart/form-data"> {% csrf_token %}
         
         <div class="camp">
+            <label for="value">Insira o seu saldo atual:</label>
+            <input type="number" value="0.00" name="saldo" step="any" min="0.00" required>
+        </div>
+
+        <div class="camp">
             <label for="value">Insira o valor da renda mensal:</label>
             <input type="number" value="0.00" name="valor" step="any" min="0.00" required>
+        </div>
+
+        <div class="camp">
+            <label for="value">Insira o dia do mês:</label>
+            <input type="date" name="dia" required>
         </div>
 
         <div class="camp">

@@ -1,7 +1,7 @@
 {% extends 'baseUsuario.html' %}
 {% load static %}
 
-{% block 'titulo' %}{% endblock %} 
+{% block 'titulo' %}Editar Despesa{% endblock %} 
 
 {% block 'head' %}
 {% endblock %}
@@ -18,27 +18,32 @@
 
     <form method="POST" action="{% url 'validaEditDes' despesa.id %}" enctype="multipart/form-data"> {% csrf_token %}
 
-        <div>
+        <div class="camp">
             <label for="name">Nome:</label>
             <input name="name" id="name" type="text" maxlength="25" autocomplete="off" value="{{despesa.name}}">
         </div>
         
-        <div>
+        <div class="camp">
             <label for="description">Descrição:</label>
             <textarea name="description" id="description">{{despesa.description}}</textarea>
         </div>
 
-        <div>
-            <label for="valor">Valor:</label>
-            <input type="number" id="valor" value="{{despesa.valor}}" name="valor" step="any" min="0.01">
+        <div class="camp">
+            <label for="valor">Valor total:</label>
+            <input type="number" id="valor" value="{{valores.completo}}" name="valor" step="any" min="1.00">
+        </div>
+
+        <div class="camp">
+            <label for="pago">Valor já pago:</label>
+            <input type="number" value="{{valores.pago}}" id="pago" name="pago" step="any" min="0.0">
         </div>
         
-        <div>
+        <div class="camp">
             <label for="vencimento">Data de Vencimento:</label>
             <input type="date" name="vencimento" id="vencimento" value="{{despesa.vencimento}}">    
         </div>
         
-        <div>
+        <div class="camp">
             <label for="categoria">Categoria:</label>
             <select name="categoria" id="selCat">
                 {% for i in categorias %}
@@ -53,10 +58,12 @@
             </select>    
         </div>
 
-        <div>
+        <div class="camp">
             <input type="submit" value="Editar">    
         </div>
 
     </form>
 </div>
+
+{{despesa.valor.pago}}
 {% endblock %}

@@ -1,7 +1,7 @@
 {% extends 'baseUsuario.html' %}
 {% load static %}
 
-{% block 'titulo' %}{% endblock %} 
+{% block 'titulo' %}Cadastrar Despesa{% endblock %} 
 
 {% block 'head' %}
 {% endblock %}
@@ -28,8 +28,13 @@
         </div>
 
         <div class="camp">
-            <label for="valor">Valor:</label>
+            <label for="valor">Valor total:</label>
             <input type="number" value="1.00" id="valor" name="valor" step="any" min="0.01">
+        </div>
+
+        <div class="camp">
+            <label for="valor">Valor já pago:</label>
+            <input type="number" value="0.00" id="pago" name="pago" step="any" min="0.00">
         </div>
         
         <div class="camp">

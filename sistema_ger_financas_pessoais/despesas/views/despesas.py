@@ -9,11 +9,12 @@ despesasDB = db['despesas']
 
 def despesas(request):
     id_user = request.session['user']['id']
-    despesas = list(despesasDB.find({'id_user': id_user}))
-    qnt = len(despesas)
+    despesas = despesasDB.find_one({'id_user': id_user})
+    """ print(despesas) """
+    qnt = len(despesas['itens'])
     return render(request, 'despesas.html', {
-        'id_user': id_user, 
-        'despesas': despesas, 
+        'id_user': id_user,
+        'despesas': list(despesas['itens']),
         'qnt': qnt
         }
     )
