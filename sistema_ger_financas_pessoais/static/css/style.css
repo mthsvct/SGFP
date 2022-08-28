@@ -168,7 +168,7 @@ label{
 
 .line{
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     align-items: center;
     margin: 1.2rem;
 }

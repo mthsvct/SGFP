@@ -14,13 +14,21 @@
 
 
 {% if status == '0'%}
-<div class="alerta certo">
-    <p>Cadastro realizado com sucesso!</p>
-</div>
-{% endif %} {% if status == '1'%}
-<div class="alerta errado">
-    <p>Realize o seu login!</p>
-</div>
+    <div class="alerta certo">
+        <p>Cadastro realizado com sucesso!</p>
+    </div>
+{% endif %} 
+
+{% if status == '1'%}
+    <div class="alerta errado">
+        <p>Realize o seu login!</p>
+    </div>
+{% endif %}
+
+{% if status == '2'%}
+    <div class="alerta errado">
+        <p>Conta excluida com sucesso!</p>
+    </div>
 {% endif %}
 
 <h2>Login</h2>

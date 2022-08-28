@@ -41,7 +41,8 @@ INSTALLED_APPS = [
     'users',
     'home',
     'categories',
-    'despesas'
+    'despesas',
+    'poupanca'
 ]
 
 MIDDLEWARE = [

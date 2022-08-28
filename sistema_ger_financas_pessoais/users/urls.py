@@ -12,4 +12,5 @@ urlpatterns = [
     path('sair/', sair, name='sair'),
     path('renda/', renda, name='renda'),
     path('validaRenda/', validaRenda, name='validaRenda'),
+    path('excluirConta/', excluirConta, name='excluirConta')
 ]

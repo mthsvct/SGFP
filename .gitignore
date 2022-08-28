@@ -28,3 +28,11 @@ sistema_ger_financas_pessoais/despesas/views/__pycache__/cadastro.cpython-38.pyc
 sistema_ger_financas_pessoais/despesas/views/__pycache__/despesas.cpython-38.pyc
 sistema_ger_financas_pessoais/despesas/views/__pycache__/delete.cpython-38.pyc
 sistema_ger_financas_pessoais/despesas/views/__pycache__/editar.cpython-38.pyc
+sistema_ger_financas_pessoais/poupanca/__pycache__/__init__.cpython-38.pyc
+sistema_ger_financas_pessoais/poupanca/__pycache__/admin.cpython-38.pyc
+sistema_ger_financas_pessoais/poupanca/__pycache__/apps.cpython-38.pyc
+sistema_ger_financas_pessoais/poupanca/__pycache__/models.cpython-38.pyc
+sistema_ger_financas_pessoais/poupanca/__pycache__/urls.cpython-38.pyc
+sistema_ger_financas_pessoais/poupanca/migrations/__pycache__/__init__.cpython-38.pyc
+sistema_ger_financas_pessoais/poupanca/views/__pycache__/__init__.cpython-38.pyc
+sistema_ger_financas_pessoais/poupanca/views/__pycache__/poupanca.cpython-38.pyc

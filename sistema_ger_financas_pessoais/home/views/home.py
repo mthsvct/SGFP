@@ -11,7 +11,6 @@ def home(request):
     else:
         return aux['resposta']
 
-
 def verificaLogado(request):
     """ 
         Retorna um dicionario, onde:
@@ -29,3 +28,6 @@ def verificaLogado(request):
         return {'logado': False, 'resposta': redirect('/user/login/?status=1')}
     
     return {'logado': True, 'resposta': request.session['user']}
+
+def configuracoes(request):
+    return render(request, 'configuracoes.html')
