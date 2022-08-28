@@ -1,13 +1,61 @@
-{% extends 'base.html' %}
+{% extends 'baseUsuario.html' %}
 {% load static %}
 
-{% block 'titulo' %}Poupanca{% endblock %} 
+{% block 'titulo' %}Poupança{% endblock %} 
 
 {% block 'head' %}
 {% endblock %}
 
 {% block 'conteudo' %}
 <div class="dentroConteudo">
-    <h1>Hello World!</h1>
+    <h1>Poupança</h1>
+
+    {% if status == '0'%}
+        <div class="alerta certo">
+            <p>Configurações atualizadas com sucesso!</p>
+        </div>
+    {% endif %} 
+
+    <div class="camp" style="border: 1px solid black;">
+        <h3>Planejado: </h3>
+        <h1>{{poupanca.planejado}}R$</h1>
+        <p>Valor que se deseja alcançar juntando.</p>
+    </div>
+
+    <div class="camp" style="border: 1px solid black;">
+        <h3>Guardado: </h3>
+        <h1>{{poupanca.guardado}}R$</h1>
+        <p>Valor guardado até o momento.</p>
+    </div>
+
+    <div class="camp" style="border: 1px solid black;">
+        <h3>Separar: </h3>
+        <h1>{{poupanca.mensal}}R$</h1>
+        <p>Valor que será separado por mês.</p>
+    </div>
+
+    <div class="camp" style="border: 1px solid black;">
+        <h3>Prazo: </h3>
+        <p>para atingir o valor planejado.</p>
+        
+        {% if poupanca.meses != -1 %}
+            <div style="display: flex; justify-content: center; align-items: center;">
+                <h1 style="margin-right: 15px;">{{poupanca.data.meses}}</h1>
+                <p>Meses</p>
+            </div>
+
+        {% else %}
+            <div style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
+                <h1>Indefinido</h1>
+                <p>Não foi possível calcular</p>
+            </div>
+
+        {% endif %}
+
+    </div>
+
+    <a href="{% url 'configurar' %}"><button class="line bt2">Configurar</button></a>
+
+
 </div>
 {% endblock %}

@@ -4,5 +4,7 @@ from .views import *
 
 urlpatterns = [
     #path('cadastro/', cadastro, name='cadastro')
-    path('', poupanca, name='poupanca')
+    path('', poupanca, name='poupanca'),
+    path('configurar/', configurar, name='configurar'),
+    path('validaConfigPoup/', validaConfigPoup, name='validaConfigPoup')
 ]

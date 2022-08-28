@@ -93,3 +93,4 @@ def atualizaControlItens(collection):
     # Este atualiza as collections de Despesas e Categorias
     collection['control']['counter'] = len(collection['itens'])
     collection['control']['last_id'] = collection['control']['last_id'] + 1
+

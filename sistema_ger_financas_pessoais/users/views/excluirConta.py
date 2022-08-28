@@ -15,7 +15,7 @@ def excluirConta(request):
 
 
 def operaExclusao(id_user):
-    colecoes = ['despesas', 'categories']
+    colecoes = ['despesas', 'categories', 'poupanca']
     for i in colecoes:
         db[i].find_one_and_delete({'id_user': id_user})
     

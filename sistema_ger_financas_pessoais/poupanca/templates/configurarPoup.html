@@ -1,0 +1,52 @@
+{% extends 'baseUsuario.html' %}
+{% load static %}
+
+{% block 'titulo' %}Poupança{% endblock %} 
+
+{% block 'head' %}
+{% endblock %}
+
+{% block 'conteudo' %}
+<div class="dentroConteudo">
+    <h1>Hello World!</h1>
+
+    
+
+    <form method="POST" action="{% url 'validaConfigPoup' %}" enctype="multipart/form-data"> {% csrf_token %}
+        
+        <div class="camp">
+            <label for="planejado">
+                <p>Valor que se deseja juntar: </p>
+            </label>
+            <input type="number" value="{{valores.planejado}}" id="planejado" name="planejado" step="any" min="0.0">
+        </div>
+        
+        <div class="camp">
+            <label for="guardado">
+                <p>Valor guardado até o momento: </p>
+            </label>
+            <input type="number" value="{{valores.guardado}}" id="guardado" name="guardado" step="any" min="0.0">
+        </div>
+
+
+        <div class="camp">
+            <label for="mensal">
+                <p>Valor que será separado todo mês: </p>
+            </label>
+            <input type="number" value="{{valores.mensal}}" id="mensal" name="mensal" step="any" min="0.0">
+        </div>
+    
+        <div class="camp">
+            <button class="bt2" type="submit" value="Enviar">Enviar</button>
+        </div>
+
+        <div class="camp">
+            <a class="bt2" href="{% url 'home' %}" style="width: 150px; height: 50px;">Cancelar</a>
+        </div>
+
+    </form>
+
+
+
+</div>
+{% endblock %}

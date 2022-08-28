@@ -4,6 +4,7 @@ from django.http import HttpResponse
 import pymongo
 from pymongo import MongoClient
 from hashlib import sha256
+
 # Create your views here.
 
 # db é o banco de dados do mongoDB
@@ -62,9 +63,38 @@ def cadastroBD(name, email, password):
         }
     }
     users.insert_one(user)
+    cadUser(user['id'])
+
+def cadUser(id_user):
     atualizaControl(users)
-    cadUserCategorie(user['id'])
-    cadUserDespesas(user['id'])
+    cadUserCategorie(id_user)
+    cadUserDespesas(id_user)
+    cadUserPoupanca(id_user)
+
+def cadUserDespesas(id_user):
+    d = {
+        "id_user": id_user,
+        "control": {
+            "counter": 0,
+            "last_id": 0,
+        },
+        "itens": []
+    }
+    db['despesas'].insert_one(d)
+
+def cadUserPoupanca(id_user):
+    hoje = date.today()
+    p = {
+        'id_user': id_user,
+        'planejado': float(0), # valor que se pretende alcançar.
+        'data': {
+            'meses': 0,
+            'data': hoje.strftime('%Y-%m-%d')
+        },  # data calculada que será levada para alcançar o valor.
+        'guardado': float(0), # Valor que já se encontra na poupanca
+        'mensal': float(0) # valor a ser guardado todo mês
+    }
+    db['poupanca'].insert_one(p)
 
 def cadUserCategorie(id_user):
     cat = {
@@ -118,14 +148,3 @@ def cadUserCategorie(id_user):
 	    ]
     }
     db['categories'].insert_one(cat)
-
-def cadUserDespesas(id_user):
-    d = {
-        "id_user": id_user,
-        "control": {
-            "counter": 0,
-            "last_id": 0,
-        },
-        "itens": []
-    }
-    db['despesas'].insert_one(d)

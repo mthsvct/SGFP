@@ -3,7 +3,7 @@ from django.http import HttpResponse
 from django.shortcuts import redirect, render
 
 from home.views import verificaLogado
-from users.views import db, atualizaControl
+from users.views import db
 
 categoriesDB = db['categories']
 
@@ -51,5 +51,10 @@ def cadCategorieBD(name, description, color, id_user):
     categorias['itens'].append(cate)
     
     categoriesDB.update_one({'id_user': id_user},  {"$set": categorias })
+
+
+
+
+
 
 # #ffff87
