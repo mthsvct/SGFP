@@ -19,16 +19,25 @@
 
     <form method="POST" action="{% url 'validaEditCat' idCat %}" enctype="multipart/form-data"> {% csrf_token %}
 
-        <label for="name">Nome:</label>
-        <input name="name" id="name" type="text" maxlength="25" value="{{cat.name}}">
+        <div class="camp">
+            <label for="name">Nome:</label>
+            <input name="name" id="name" type="text" maxlength="25" value="{{categoria.name}}">    
+        </div>
         
-        <label for="description">Descrição:</label>
-        <textarea name="description" id="description">{{cat.description}}</textarea>
 
-        <label for="colorDesc"></label>
-        <input type="color" name="colorDesc" id="colorDesc" value="{{cat.color}}">
+        <div class="camp">
+            <label for="description">Descrição:</label>
+            <textarea name="description" id="description">{{categoria.description}}</textarea>
+        </div>
 
-        <input type="submit" value="Editar">
+        <div class="camp">
+            <label for="colorDesc"></label>
+            <input style="height: 100px;" type="color" name="colorDesc" id="colorDesc" value="{{categoria.color}}">
+        </div>
+
+        <div class="camp">
+            <input type="submit" value="Editar">
+        </div>
 
     </form>
 

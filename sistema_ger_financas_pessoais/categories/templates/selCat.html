@@ -12,8 +12,8 @@
 
     
     <div class="opcoes">
-        {% for i in categorias %}
-            <div class="opcao" style="border: 1px solid black; width: 30%; min-height: 70px;">
+        {% for i in categorias.itens %}
+            <div class="opcao" style="border: 1px solid black; width: 400px; min-height: 70px; margin-bottom: 10px;">
                 <a href="{% url 'edit' i.id %}">
                     <h4>{{i.name}}</h4>
                     <p>{{i.description}}</p>

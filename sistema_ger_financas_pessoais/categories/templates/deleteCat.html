@@ -31,7 +31,7 @@
 
                 <p>Selecione as categorias personalizadas a serem deletadas:</p>
                 
-                {% for i in categorias %}
+                {% for i in categorias.itens %}
                 <div class="opcao">
                         <input type="checkbox" name="select{{i.id}}" id="{{i.id}}">
                         <label for="{{i.id}}">{{i.name}}</label>

@@ -45,7 +45,7 @@ def editDes(request, idDes):
 def validaEditDes(request, idDes):
     id_user = request.session['user']['id']
     d = despesasDB.find_one({'id_user': id_user})
-    despesa, indice = buscaDespesa(d['itens'], idDes)
+    _, indice = buscaDespesa(d['itens'], idDes)
 
     name = request.POST['name']
     des = request.POST['description']

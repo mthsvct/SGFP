@@ -12,9 +12,16 @@ def renda(request):
     user = verificaLogado(request)
     if user['logado'] == True:
         status = request.GET.get('status')
+        usuario = users.find_one({'id': user['resposta']['id']})
+        renda = {
+            'saldo': str(usuario['renda']['saldo']),
+            'renda_mensal': str(usuario['renda']['renda_mensal'])
+        }
         return render(request, 'renda.html', {
             'status': status,
-            'user': user['resposta']
+            'user': user['resposta'],
+            'usuario': usuario,
+            'renda': renda
             }
         )
     else:
@@ -24,13 +31,6 @@ def validaRenda(request):
     saldo = float(request.POST['saldo'])
     valor = float(request.POST['valor'])
     dia = montaData(request.POST['dia'])
-
-    """ separado = request.POST['dia'].split('-')
-    dia = date(
-        int(separado[0]),
-        int(separado[1]),
-        int(separado[2]),
-    ) # Montei a data a partir da string vinda do formulário. """
 
     cadastrarRenda(saldo, valor, dia, request.session['user']['id'])
     return redirect('/user/renda/?status=1')

@@ -7,8 +7,8 @@ from .categories import categoriesDB
 
 def deleteCat(request):
     user = request.session['user']
-    cats = list(categoriesDB.find({'id_user': user['id']}))
-    qnt = len(cats)
+    cats = categoriesDB.find_one({'id_user': user['id']})
+    qnt = len(cats['itens'])
     status = request.GET.get('status')
     return render(request, 'deleteCat.html', {
         'user': user['id'], 
