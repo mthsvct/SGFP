@@ -31,3 +31,9 @@ def verificaLogado(request):
 
 def configuracoes(request):
     return render(request, 'configuracoes.html')
+
+def sobre(request):
+    return render(request, 'sobre.html')
+
+def contato(request):
+    return render(request, 'contato.html')

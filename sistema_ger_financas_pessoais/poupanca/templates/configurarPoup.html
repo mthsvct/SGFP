@@ -8,7 +8,7 @@
 
 {% block 'conteudo' %}
 <div class="dentroConteudo">
-    <h1>Hello World!</h1>
+    <!-- <h1>Hello World!</h1> -->
 
     
 
@@ -36,13 +36,19 @@
             <input type="number" value="{{valores.mensal}}" id="mensal" name="mensal" step="any" min="0.0">
         </div>
     
-        <div class="camp">
-            <button class="bt2" type="submit" value="Enviar">Enviar</button>
+        <div class="row" style="justify-content: space-between; margin-top: 20px;">
+            <div class="camp">
+                <a  href="{% url 'home' %}"> 
+                    <button class="bt2">Cancelar</button>
+                </a>
+                
+            </div>
+            
+            <div class="camp">
+                <button class="bt2" type="submit" value="Enviar">Enviar</button>
+            </div>
         </div>
-
-        <div class="camp">
-            <a class="bt2" href="{% url 'home' %}" style="width: 150px; height: 50px;">Cancelar</a>
-        </div>
+        
 
     </form>
 

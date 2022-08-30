@@ -1,0 +1,41 @@
+{% extends 'baseUsuario.html' %}
+{% load static %}
+
+{% block 'titulo' %}Contato{% endblock %} 
+
+{% block 'head' %}
+{% endblock %}
+
+{% block 'conteudo' %}
+<h2>Contato</h2>
+
+<div class="camp">
+    <label for="nome">Nome</label>
+    <input type="text" name="nome">
+</div>
+
+<div class="camp">
+    <label for="assunto">Assunto</label>
+    <select name="assunto" >
+        <option>Dúvida</option>
+        <option>Crítica</option>			
+        <option>Sugestão</option>
+    </select>
+</div>
+
+<div class="camp">
+    <label for="email">Email</label>
+    <input type="email" name="email">
+</div>
+
+<div class="camp">
+    <label for="msg">Mensagem</label>
+    <textarea name="msg" rows="5"></textarea>
+</div>
+
+<div class="camp">
+    <button class="bt2">Enviar</button>
+</div>
+
+
+{% endblock %}
