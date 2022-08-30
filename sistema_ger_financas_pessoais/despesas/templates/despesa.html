@@ -1,0 +1,33 @@
+{% extends 'baseUsuario.html' %}
+{% load static %}
+
+{% block 'titulo' %}Despesa{% endblock %} 
+
+{% block 'head' %}
+{% endblock %}
+
+{% block 'conteudo' %}
+<div class="dentroConteudo">
+
+    <h1>{{despesa.name}}</h1>
+
+    <div class="camp informacoes" style="margin-bottom: 10px;">
+        <p>Descrição: {{despesa.description}}</p>
+        <p>Valor: R$ {{despesa.valor.completo}}</p>
+        <p>Pago: R$ {{despesa.valor.pago}}</p>
+        <p>Restante: R$ {{despesa.valor.restante}}</p>
+        <p>Vencimento: {{despesa.vencimento}}</p>
+        <p>Categoria: {{categoria.name}}</p>
+    </div>
+
+    <div class="botoes">
+        <a href="{% url 'pagamento' despesa.id %}"><button class="bt2">Realizar Pagamento</button></a>
+        <a href="{% url 'editDes' despesa.id %}"><button class="bt2">Editar Despesa</button></a>
+        <a href="#"><button class="bt2">Excluir Despesa</button></a>
+    </div>
+
+
+</div>
+
+
+{% endblock %}

@@ -18,9 +18,12 @@
             <ul>
                 {% for i in despesas %}
                     <li>
-                        <h5>{{i.name}}</h5>
-                        <p>{{i.description}}</p>
-                        <p>{{i.valor.completo}}R$</p>
+                        <a href="{% url 'despesa' i.id %}">
+                            <h5>{{i.name}}</h5>
+                            <p>{{i.description}}</p>
+                            <p>{{i.valor.restante}}R$</p> 
+                            <p>{{i.vencimento}}</p>
+                        </a>
                     </li>
                 {% endfor %}
             </ul>

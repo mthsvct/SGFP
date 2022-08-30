@@ -57,7 +57,10 @@ def salvar_des_BD(name, des, valor, vencimento, cat, id_user):
             'vencimento': vencimento,
             'categoria': cat,
             'id_user': id_user,
-            'status': pegaStatus(vencimento)
+            'status': pegaStatus(vencimento),
+            'repete': {}, # se essa despesa se repetir, deve ser por inicialmente: dia, semana, mês
+            'pagamento': [] # Aqui pode ser uma lista de objetos com pagamento.
+            
         }
     )
     
