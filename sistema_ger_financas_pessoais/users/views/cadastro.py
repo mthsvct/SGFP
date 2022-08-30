@@ -70,6 +70,7 @@ def cadUser(id_user):
     cadUserCategorie(id_user)
     cadUserDespesas(id_user)
     cadUserPoupanca(id_user)
+    cadUserPagamento(id_user)
 
 def cadUserDespesas(id_user):
     d = {
@@ -148,3 +149,16 @@ def cadUserCategorie(id_user):
 	    ]
     }
     db['categories'].insert_one(cat)
+
+def cadUserPagamento(id_user):
+    hoje = date.today()
+    p = {
+        'id_user': id_user,
+        'boletos': {'name': 'Boleto', 'pagos': [], 'tipo': 1}, # pagos é um array que salvará os ids das despesas pagas com este método de pagamento.
+        'pix': {'name': 'Pix', 'pagos': [], 'tipo': 2},
+        'especie': {'name': 'Em Especie', 'pagos': [], 'tipo': 3},
+        'cartoes': [] # Cartões são do tipo 4.
+    }
+    db['pagamento'].insert_one(p)
+
+

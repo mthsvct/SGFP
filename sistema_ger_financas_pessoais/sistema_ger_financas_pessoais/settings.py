@@ -42,7 +42,8 @@ INSTALLED_APPS = [
     'home',
     'categories',
     'despesas',
-    'poupanca'
+    'poupanca',
+    'pagamento'
 ]
 
 MIDDLEWARE = [

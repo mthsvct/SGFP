@@ -1,0 +1,70 @@
+{% extends 'baseUsuario.html' %}
+{% load static %}
+
+{% block 'titulo' %}Pagamento{% endblock %} 
+
+{% block 'head' %}
+{% endblock %}
+
+{% block 'conteudo' %}
+<div class="dentroConteudo">
+    <h1>Pagamento</h1>
+
+
+    {% if status == '0'%}
+        <div class="alerta errado">
+            <p>Pagamento realizado com sucesso!</p> 
+        </div>
+    {% endif %}
+
+    <div class="camp">
+        <p>Valor da despesa: </p>
+        <div style="display: flex;">
+            <h3>{{despesa.valor.restante}}</h3>
+            <p>R$</p>
+        </div>
+    </div>
+
+    <form method="POST" action="{% url 'validaPagamento' idDes %}" enctype="multipart/form-data"> {% csrf_token %}
+
+        <div class="camp"> 
+            <label for="valor">Insira valor pago: </label>
+            <input type="number" value="1.00" id="valor" name="valor" step="any" min="0.01" max="{{valor_max}}">
+        </div>
+
+
+        <div class="forma_pg">
+
+            <h3>Forma de Pagamento: </h3>
+
+            <div class="tipos">
+                <input type="radio" name="tipo" id="tipo1" value="1">
+                <label for="tipo1">Boleto</label>
+            </div>
+            
+            <div class="tipos">
+                <input type="radio" name="tipo" id="tipo2" value="2">
+                <label for="tipo2">Pix</label>
+            </div>
+
+            <div class="tipos">
+                <input type="radio" name="tipo" id="tipo3" value="3">
+                <label for="tipo3">Especie</label>
+            </div>
+
+        </div>
+
+        <div class="data_form">
+            <label for="data">Data do Pagamento:</label>
+            <input type="date" name="data" id="data">
+        </div>
+
+        
+        <div class="camp">
+            <button class="bt2" type="submit" value="Enviar">Enviar</button>
+        </div>
+
+    </form>
+
+</div>
+{% endblock %}

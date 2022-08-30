@@ -45,11 +45,7 @@
         <div class="camp">
             <label for="categoria">Categoria:</label>
             <select name="categoria" id="selCat" required>
-                {% for i in categorias %}
-
-                    <!-- {% if forloop.counter0 == 0 %}
-                        <option disabled selected value="-1"> -- select an option -- </option>
-                    {% endif %} -->
+                {% for i in categorias.itens %}
                     <option value="{{i.id}}">{{i.name}}</option>
                 {% endfor %}
             </select>    
