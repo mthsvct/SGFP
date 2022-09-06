@@ -1,5 +1,4 @@
 {% load static %}
-
 <!DOCTYPE html>
 <html lang="pt-BR">
 
@@ -12,7 +11,7 @@
 		<link rel="stylesheet" href="{% static 'css/style.css' %}">
 		{% block 'head' %} {% endblock %}
 	</head>
-
+ 
 
 	<body>
 
@@ -24,14 +23,26 @@
                 </a>
             </div>
     
+            {% if user.is_authenticated %}
+            <nav class="opcoes">
+                <a href="#"><img src="{% static 'img/profile.svg' %}" alt=""></a>
+                <a href="#"><img src="{% static 'img/notification.svg' %}" alt=""></a>
+                <a href="#"><img src="{% static 'img/menu.svg' %}" alt=""></a>
+            </nav>
+            
+            {% else %}
+           
             <nav class="opcoes">
                 <a href="{% url 'login' %}"><button class="bt1">Login</button></a>
                 <a href="{% url 'cadastro' %}" ><button class="bt2">Cadastro</button></a>
             </nav>
+            {% endif %}
+            
 		</header>
 
 		<main>
 			{% block 'conteudo' %}{% endblock %}
+
         </main>
 
 		<footer>
