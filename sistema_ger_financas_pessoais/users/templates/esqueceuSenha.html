@@ -7,10 +7,8 @@
 {% endblock %}
 
 {% block 'conteudo' %}
-<div class="dentroConteudo">
 
-
-    <h1>Esqueceu a Senha</h1>
+    <h2>Redefinir a senha</h2>
 
     {% if status == '1'%}
         <div class="alerta errado">
@@ -26,33 +24,40 @@
 
     <form method="POST" action="{% url 'validaEsqueceuSenha' %}" enctype="multipart/form-data"> {% csrf_token %}
         
-        <div class="emailUser">
-            <input type="email" name="email" id="email" placeholder="Email" autocomplete="off" required>
+        <div class="emailUser camp">
+            <label for="email">Email</label>
+            <input type="email" name="email" id="email" autocomplete="off" required>
         </div>
 
-        <div class="passwordUser">
-            <input type="password" name="password" id="password" placeholder="Nova senha" minlength="8" required>
+        <div class="passwordUser camp">
+            <label for="password">Nova senha</label>
+            <input type="password" name="password" id="password" minlength="8" required>
         </div>
 
-        <div class="passwordUser">
-            <input type="password" name="confirm_password" id="password" placeholder="Confirme a senha" minlength="8" required>   
+        <div class="passwordUser camp">
+            <label for="confirm_password">Confirme a senha</label>
+            <input type="password" name="confirm_password" id="password" minlength="8" required>   
         </div>
 
-        <input type="submit" value="Alterar">
+        <div class="camp">
+            <button class="bt2" type="submit">Alterar</button>
+        </div>
 
-        <button>
-            <a href="{% url 'cadastro' %}">
-                Cadastro
+        
+
+        <!-- <div class="row">
+            <a class="camp" href="{% url 'cadastro' %}">
+                <button class="bt2">Cadastro</button>
             </a>
-        </button>
 
-        <button>
-            <a href="{% url 'login' %}">
-                Login
+            <a  class="camp" href="{% url 'login' %}">
+                <button class="bt2">Login</button>
             </a>
-        </button>
+        </div> -->
+       
+            
+       
     
     </form>
 
-</div>
 {% endblock %}
