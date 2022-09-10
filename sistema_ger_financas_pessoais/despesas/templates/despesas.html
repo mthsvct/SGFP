@@ -19,7 +19,7 @@
                 {% for i in despesas %}
                     <li>
                         <a href="{% url 'despesa' i.id %}">
-                            <h5>{{i.name}}</h5>
+                            <h3>{{i.name}}</h3>
                             <p>{{i.description}}</p>
                             <p>{{i.valor.restante}}R$</p> 
                             <p>{{i.vencimento}}</p>

@@ -20,9 +20,13 @@ def validaLogin(request):
     user = buscaUser(email)
 
     if len(user) == 0:
-        return HttpResponse(f'Email não encontrado!')
+        #return HttpResponse(f'Email não encontrado!')
+        return redirect('/user/login/?status=3')
+        
     elif verificaPass(user[0], password) == False:
-        return HttpResponse(f'Senha incorreta!')
+        #return HttpResponse(f'Senha incorreta!')
+        return redirect('/user/login/?status=4')
+
 
     request.session['user'] = {'id': user[0]['id'], 'name': user[0]['name']}
 

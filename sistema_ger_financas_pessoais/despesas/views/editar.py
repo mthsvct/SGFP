@@ -34,11 +34,13 @@ def editDes(request, idDes):
         'pago': str(despesa['valor']['pago'])
     }
     cats = pegaCategorias(id_user)
+    status = request.GET.get('status')
     return render(request, 'editD.html', {
         'id_user': id_user,
-        'categorias': cats,
+        'categorias': cats['itens'],
         'despesa': despesa,
-        'valores': valores
+        'valores': valores,
+        'status': status
         }
     )
 
