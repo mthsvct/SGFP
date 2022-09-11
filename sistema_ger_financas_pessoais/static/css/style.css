@@ -16,6 +16,8 @@
     --border1: 1px solid var(--color2);
     --border2: 1px solid red;
     --border3: 2px solid var(--color2);
+    --border4: 2px solid var(--color6);
+    --border5: 1px solid #ddd;
 
 }
 
@@ -37,14 +39,14 @@ header{
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    border-bottom: var(--border1);
+    border-bottom: var(--border5);
     border-radius: 0px;
 }
 
 nav{
     display: flex;
     flex-direction: row;
-    padding: 0 2.5rem;
+    /* padding: 0 2.5rem; */
     align-items: center;
     justify-content: space-between;
 }
@@ -68,6 +70,7 @@ a{
     flex-direction: column;
     align-items: center;
     cursor: pointer;
+    font-size: 20px;
 }
 
 /* -----------------------------------------logo--------------------------------- */
@@ -92,7 +95,89 @@ a{
     align-items: center;
 }
 
+/* ----------------------------------------menu------------------------------------ */
 
+
+.container {
+	margin: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+ul {
+	padding-left: 0;
+    margin-top: 0;
+    margin-bottom: 0;
+	list-style: none;
+}
+
+nav {
+	position: relative;
+}
+
+nav > ul > li {
+	display: inline-block;
+  	/* font-size: 14px; */
+  	padding: 0;
+  	position: relative;
+}
+
+nav > ul > li > a {
+  	display: block;
+  	padding: 0;
+  	/* border-bottom: 3px solid transparent; */
+    transition: all .3s ease;
+}
+/* nav > ul > li:hover > a {
+	color: #444; 
+  	border-bottom: 3px solid #444;
+} */
+
+.mega-menu {
+  	visibility: hidden;
+    opacity: 0;
+    transition: visibility 0s, opacity 0.5s linear;
+  	position: absolute;
+  	left: 0;
+    /* border: var(--border4);
+    border-radius: 10%; */
+    /* padding-bottom: 20px;  */
+}
+
+/* .mega-menu .container {
+    display: flex;
+} */
+/* .mega-menu .item {
+	flex-grow: 1;
+    margin: 0 10px;
+}
+.mega-menu .item img {
+    width: 100%;
+} */
+.mega-menu a {
+	border-bottom: 1px solid #ddd;
+  	flex-direction: row;
+    justify-content: center;
+  	padding: 10px;
+}
+.mega-menu a:hover {
+    color: var(--color4);
+    font-weight: bold;
+}
+
+.mega-menu a img{
+    margin-right: 5px;
+}
+
+.dropdown {
+    position: static;
+}
+
+.dropdown:hover .mega-menu {
+    visibility: visible;
+    opacity: 1;
+}
 
 /* --------------------------------------buttons-------------------------------- */
 button{
