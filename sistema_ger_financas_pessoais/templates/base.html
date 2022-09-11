@@ -9,6 +9,9 @@
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link rel="shortcut icon" href="{% static 'img/logo.svg' %}" type="image/x-icon">
 		<link rel="stylesheet" href="{% static 'css/style.css' %}">
+        <link rel="stylesheet" href="{% static 'css/menu.css' %}">
+        <link rel="stylesheet" href="{% static 'css/usuario.css' %}">
+        <link rel="stylesheet" href="{% static 'css/mobile.css' %}">
 		{% block 'head' %} {% endblock %}
 	</head>
  
@@ -23,20 +26,24 @@
                 </a>
             </div>
     
-            {% if user.is_authenticated %}
-            <nav class="opcoes">
-                <a href="#"><img src="{% static 'img/profile.svg' %}" alt=""></a>
-                <a href="#"><img src="{% static 'img/notification.svg' %}" alt=""></a>
-                <a href="#"><img src="{% static 'img/menu.svg' %}" alt=""></a>
-            </nav>
-            
-            {% else %}
-           
-            <nav class="opcoes">
+            {%if user.is_anonymous%}
+           <nav class="opcoes">
                 <a href="{% url 'login' %}"><button class="bt1">Login</button></a>
                 <a href="{% url 'cadastro' %}" ><button class="bt2">Cadastro</button></a>
             </nav>
-            {% endif %}
+            
+            {%else%}
+            <nav class="opcoes dropdown">
+                <a class="menubtn" href="#"><img src="{% static 'img/profile.svg' %}" alt=""></a>
+                <!-- <div class="dropdown-child">
+                    <a href="#"><img src="{% static 'img/settings.svg' %}" alt="">Configurações</a>
+                    <a href="#"><img src="{% static 'img/exit.svg' %}" alt="">Sair</a> 
+                </div> -->
+                <a class="menubtn" href="#"><img src="{% static 'img/notification.svg' %}" alt=""></a>
+                <a href="#"><img src="{% static 'img/menu.svg' %}" alt=""></a>
+            </nav>
+            
+            {%endif%}
             
 		</header>
 
@@ -54,8 +61,8 @@
             </div>
     
             <div class="paginas">
-                <a href="#">Sobre</a>
-                <a href="#">Contato</a>
+                <a href="{% url 'sobre' %}">Sobre</a>
+                <a href="{% url 'contato' %}">Contato</a>
             </div>
     
             <div class="redesSociais">

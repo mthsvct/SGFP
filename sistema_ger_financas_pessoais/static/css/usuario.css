@@ -4,13 +4,3 @@
     padding-left: 80px;
 }
 
-@media only screen and (max-width: 767px) {
-    header{
-        padding: 15px 20px;
-    }
-    .opcoes img{
-        width: 30px;
-        height: 30px;
-        padding-left: 40px;
-    }
-}

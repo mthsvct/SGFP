@@ -1,13 +1,34 @@
+/* ----------------------------------configuracoes-------------------------------- */
+
+/* fontes */
 @import url('https://fonts.googleapis.com/css2?family=Inter&family=Montserrat&display=swap');
+
+/* variaveis */
+:root{
+    /* cores */
+    --color1: #F7F8F3;
+    --color2: #29292E;
+    --color3: #AEEEE0;
+    --color4: #4BB9AF;
+    --color5: #012C3D;
+    --color6: gray;
+    /* bordas */
+    --border1: 1px solid var(--color2);
+    --border2: 1px solid red;
+    --border3: 2px solid var(--color2);
+
+}
+
+/* ---------------------------------------body--------------------------------- */
 
 *{
     margin: 0;
     padding: 0;
-    background-color: #F7F8F3;
+    background-color: var(--color1);
     font-family: 'Montserrat', sans-serif;
     text-decoration: none;
     color: #000;
-    /*outline: 1px solid red; */
+    /* outline: var(--border2); */
 }
 
 header{
@@ -16,8 +37,30 @@ header{
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    border-bottom: 1px solid #29292E;
+    border-bottom: var(--border1);
     border-radius: 0px;
+}
+
+nav{
+    display: flex;
+    flex-direction: row;
+    padding: 0 2.5rem;
+    align-items: center;
+    justify-content: space-between;
+}
+
+
+main{
+    display: flex;
+    /* border: 1px solid #29292E; */
+    border-radius: 10px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2.5rem 0;
+    min-height: 60vh;
+    /* padding: 200px;
+    margin: 10px 0; */
 }
 
 a{ 
@@ -26,6 +69,8 @@ a{
     align-items: center;
     cursor: pointer;
 }
+
+/* -----------------------------------------logo--------------------------------- */
 
 .logo{
     display: flex;
@@ -47,14 +92,9 @@ a{
     align-items: center;
 }
 
-nav{
-    display: flex;
-    flex-direction: row;
-    padding: 0 2.5rem;
-    align-items: center;
-    justify-content: space-between;
-}
 
+
+/* --------------------------------------buttons-------------------------------- */
 button{
     font-family: 'Inter', sans-serif;
     font-weight: bold;
@@ -67,34 +107,16 @@ button{
 }
 
 .bt1{
-    background-color: #AEEEE0;
-    color: #012C3D;
+    background-color: var(--color3);
+    color: var(--color5);
     margin-right: 1.25rem;
 }
 
 .bt2{
-    background-color: #4BB9AF;
-    color: #F7F8F3;
+    background-color: var(--color4);
+    color: var(--color1);
 }
-
-
-main{
-    display: flex;
-    /* border: 1px solid #29292E; */
-    border-radius: 10px;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 2.5rem 0;
-    min-height: 60vh;
-    /* padding: 200px;
-    margin: 10px 0; */
-}
-
-.space{
-    padding: 200px;
-}
-
+/* --------------------------------------footer----------------------------------- */
 footer{
     position: relative;
     bottom: 0px;
@@ -132,6 +154,10 @@ footer{
 .redesSociais a{
     margin: 0 1.25rem;
 }
+/* -------------------------------------classes---------------------------------- */
+.space{
+    padding: 200px;
+}
 
 .camp{
     display: flex;
@@ -141,7 +167,7 @@ footer{
 }
 
 .border{
-    border: 1px solid #29292E;
+    border: var(--border1);
     border-radius: 10px;
     padding: 10px 30px;
     margin-bottom: 15px;
@@ -166,7 +192,7 @@ h2{
 }
 
 input{
-    border: 2px solid #29292E;
+    border: var(--border3);
     border-radius: 15px;
     width: 450px;
     padding: 1.25rem 0.625rem;
@@ -174,7 +200,7 @@ input{
 }
 
 textarea, select{
-    border: 2px solid #29292E;
+    border: var(--border3);
     border-radius: 10px;
     width: 450px;
     padding: 1.25rem 0.625rem;
@@ -193,8 +219,8 @@ label{
 }
 
 span{
-    color: gray;
-    text-decoration: underline gray;
+    color: var(--color6);
+    text-decoration: underline var(--color6);
     margin: 0.625rem 0;
 }
 
@@ -234,48 +260,3 @@ select{
 }
 
 
-@media only screen and (max-width: 767px) {
-    .logo img{
-        width: 40px;
-        height: 40px;
-        display: flex;
-        align-items: center;
-    }
-
-    .logo p{
-        font-family: 'Inter', sans-serif;
-        font-weight: bold;
-        font-size: 12px;
-        margin-top: 5px;
-    }
-
-    .paginas{
-        font-size: 18px;
-    }
-
-    .redesSociais img{
-        width: 30px;
-        height: 30px;
-    }
-
-    h2{
-        font-size: 32px;
-        font-weight: normal;
-        padding: 5px 0; 
-    }
-
-    input{
-        border: 2px solid #29292E;
-        border-radius: 10px;
-        width: 300px;
-        padding: 10px 5px;
-    }
-
-    label{
-        font-size: 18px;
-    }
-    
-    button{
-        font-size: 18px;
-    }
-}
