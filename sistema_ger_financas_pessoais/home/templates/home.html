@@ -7,10 +7,13 @@
 {% endblock %}
 
 {% block 'conteudo' %}
-    <div class="perfil">
-        <img src="{% static 'img/profile.svg' %}" alt="">
+
+   
+    <div class="perfil" style="margin-bottom: 20px;">
+        <!-- <img src="{% static 'img/profile.svg' %}" alt=""> -->
         <h1>Olá, {{user.name}}!</h1>
     </div>
+    
     
     <!-- <div class="line"> 
         <a href="{% url 'renda' %}"><button class="line bt2">Cadastrar renda</button></a>
@@ -22,4 +25,12 @@
         <a href="{% url 'configuracoes' %}"><button class="line bt2">Configurações</button></a>
         <a href="{% url 'sair' %}"><button class="line bt2">Sair</button></a>
     </div> -->
+    <div>
+        <div  id="gr1"></div>
+
+        <div  id="gr2"></div>
+
+        <div  id="gr3"></div>
+    </div>
+    
 {% endblock %}

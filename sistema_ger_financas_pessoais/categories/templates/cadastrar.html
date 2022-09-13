@@ -7,7 +7,7 @@
 {% endblock %}
 
 {% block 'conteudo' %}
-    <h2>Cadastrar uma nova Categoria</h2>
+    <h2>Cadastrar uma nova categoria</h2>
 
     {% if status == '0'%}
         <div class="alerta certo">
@@ -22,10 +22,14 @@
         <label for="description">Descrição:</label>
         <textarea name="description" id="description"></textarea>
 
-        <label for="colorDesc">Cor:</label>
-        <input type="color" name="colorDesc" id="colorDesc">
+        <!-- <label for="colorDesc">Cor:</label>
+        <input type="color" name="colorDesc" id="colorDesc"> -->
 
-        <input type="submit" class="bt2" value="Cadastrar">
+        <div class="camp">
+            <button type="submit" class="bt2">Cadastrar</button>
+        </div>
+        
+        
 
     </form>
 {% endblock %}
