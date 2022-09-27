@@ -45,3 +45,6 @@ sistema_ger_financas_pessoais/pagamento/migrations/__pycache__/__init__.cpython-
 sistema_ger_financas_pessoais/pagamento/views/__pycache__/__init__.cpython-38.pyc
 sistema_ger_financas_pessoais/pagamento/views/__pycache__/pagamento.cpython-38.pyc
 sistema_ger_financas_pessoais/despesas/views/__pycache__/depesa.cpython-38.pyc
+sistema_ger_financas_pessoais/pagamento/views/__pycache__/cartao.cpython-38.pyc
+sistema_ger_financas_pessoais/pagamento/views/__pycache__/formas.cpython-38.pyc
+sistema_ger_financas_pessoais/pagamento/views/__pycache__/pagamentos.cpython-38.pyc

@@ -1,0 +1,43 @@
+{% extends 'baseUsuario.html' %}
+{% load static %}
+
+{% block 'titulo' %}Cadastrar Cartão{% endblock %} 
+
+{% block 'head' %}
+{% endblock %}
+
+{% block 'conteudo' %}
+<div class="dentroConteudo">
+    <h1>Cadastrar Cartão</h1>
+
+    {% if status == '0'%}
+        <div class="alerta certo">
+            <p>Cartão cadastrado com sucesso!</p> 
+        </div>
+    {% endif %}
+
+    <form style="display: flex; flex-direction: column;" method="POST" action="{% url 'validaCadCartao' %}" enctype="multipart/form-data"> {% csrf_token %}
+
+        <div class="camp">
+            <label for="banco">Banco:</label>
+            <input name="banco" id="banco" type="text" maxlength="50" required autocomplete="off">
+        </div>
+
+        <div class="camp">
+            <label for="limite">Limite:</label>
+            <input type="number" value="1.00" id="limite" name="limite" step="any" min="0.01">
+        </div>
+        
+        <div class="camp">
+            <label for="vencimento">Data de Vencimento:</label>
+            <input type="date" name="vencimento" id="vencimento" value="{{hoje}}">    
+        </div>
+
+        <div class="camp">
+            <button type="submit" value="Cadastrar" class="bt2">Cadastrar</button>   
+        </div>
+        
+    </form>
+
+</div>
+{% endblock %}

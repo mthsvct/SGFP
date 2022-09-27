@@ -1,0 +1,41 @@
+{% extends 'baseUsuario.html' %}
+{% load static %}
+
+{% block 'titulo' %}Pagamentos{% endblock %} 
+
+{% block 'head' %}
+{% endblock %}
+
+{% block 'conteudo' %}
+<div class="dentroConteudo">
+    <h1>Pagamentos</h1>
+
+    <div>
+
+        {% if qnt > 0 %}
+
+            {% for i in pagamentos %}
+
+                <div style="margin-top: 30px;">
+                    <h3>{{i.despesa.name}}</h3>
+                    <p>Valor: {{i.pagamento.valor}}</p>
+                    <p>Data: {{i.pagamento.data}}</p>
+                    <p>Forma de Pagamento: {{i.tipo}}</p>
+                </div>
+
+                <!-- {{pagamentos}} -->
+
+            {% endfor %}
+
+        {% else %}
+
+            <div style="margin-top: 30px;">
+                <h3>Ainda não foram efetuados pagamentos.</h3>
+            </div>
+
+        {% endif %}
+
+    </div>
+
+</div>
+{% endblock %}

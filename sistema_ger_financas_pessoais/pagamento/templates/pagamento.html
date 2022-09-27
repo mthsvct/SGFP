@@ -12,7 +12,7 @@
 
 
     {% if status == '0'%}
-        <div class="alerta errado">
+        <div class="alerta certo">
             <p>Pagamento realizado com sucesso!</p> 
         </div>
     {% endif %}
@@ -38,18 +38,36 @@
             <h3>Forma de Pagamento: </h3>
 
             <div class="tipos">
-                <input type="radio" name="tipo" id="tipo1" value="1">
+                <input type="radio" name="tipo" id="tipo1" value="1" onchange="sumir_aparecer(0)">
                 <label for="tipo1">Boleto</label>
             </div>
             
             <div class="tipos">
-                <input type="radio" name="tipo" id="tipo2" value="2">
+                <input type="radio" name="tipo" id="tipo2" value="2" onchange="sumir_aparecer(0)">
                 <label for="tipo2">Pix</label>
             </div>
 
             <div class="tipos">
-                <input type="radio" name="tipo" id="tipo3" value="3">
+                <input type="radio" name="tipo" id="tipo3" value="3" onchange="sumir_aparecer(0)">
                 <label for="tipo3">Especie</label>
+            </div>
+
+            <div class="tipos">
+                <input type="radio" name="tipo" id="tipo4" value="4" onchange="sumir_aparecer(1)">
+                <label for="tipo4">Cartão</label>
+
+                <div id="opcoes_cartoes" style="display: none; flex-direction: column;">
+                    <h3>Selecione o cartão:</h3>
+                    <select name="cartao" id="cartao">
+                        {% for i in formas.cartoes.personalizados %}
+                            <option value="{{i.id}}">{{i.banco}}</option>
+                        {% endfor %}
+                    </select>
+
+                    
+
+                </div>
+
             </div>
 
         </div>
@@ -65,6 +83,22 @@
         </div>
 
     </form>
-
+    <div class="line">
+        <a href="{% url 'cadastrar_cartao' %}"><button class="line bt2">Adicionar Cartão</button></a>
+    </div>
 </div>
+
+<script>
+
+    function sumir_aparecer(op){
+        let a = document.getElementById('opcoes_cartoes');
+
+        if( op == 1 ){
+            a.style.display = 'flex';
+        } else {
+            a.style.display = 'none';
+        }
+    }
+
+</script>
 {% endblock %}

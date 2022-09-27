@@ -2,7 +2,7 @@ from hashlib import sha256
 from django.http import HttpResponse
 from django.shortcuts import redirect, render
 
-from home.views import verificaLogado
+#from home.views import verificaLogado
 from users.views import db
 
 categoriesDB = db['categories']
@@ -53,7 +53,23 @@ def cadCategorieBD(name, description, color, id_user):
     categoriesDB.update_one({'id_user': id_user},  {"$set": categorias })
 
 
+def verificaLogado(request):
+    """ 
+        Retorna um dicionario, onde:
+            'logado' é o estado se o usuário está ou não logado (True, False)
+            'resposta'  pode ser o comando de redirecionar para a página de login (False);
+                        pode ser o usuário para facilitar logo.
+    """
 
+    if ('user' in request.session):
+        # Usuário está logado. 
+        if request.session['user'] == None:
+            return {'logado': False, 'resposta': redirect('/user/login/?status=1')}
+
+    else:
+        return {'logado': False, 'resposta': redirect('/user/login/?status=1')}
+    
+    return {'logado': True, 'resposta': request.session['user']}
 
 
 

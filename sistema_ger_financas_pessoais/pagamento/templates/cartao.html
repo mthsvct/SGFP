@@ -1,0 +1,56 @@
+{% extends 'baseUsuario.html' %}
+{% load static %}
+
+{% block 'titulo' %}Cartão{% endblock %} 
+
+{% block 'head' %}
+{% endblock %}
+
+{% block 'conteudo' %}
+<div class="dentroConteudo">
+    <h1>Cartão: "{{cartao.banco}}"</h1>
+
+    <div style="display: flex; justify-content: center; align-items: center; min-width: 200px;" class="border">
+        <p style="margin-right: 20px;">Limite:</p>
+        <h3>{{cartao.limite}}</h3>
+        <p>R$</p>
+    </div>
+    
+    <div style="display: flex; justify-content: center; align-items: center; min-width: 200px;" class="border">
+        <p style="margin-right: 20px;">Vencimento:</p>
+        <h3>{{cartao.vencimento}}</h3>
+    </div>
+
+    <div>
+
+        <h1>Pagamentos Feitos:</h1>
+        {% if qnt > 0 %}
+            <div style="display: flex;">
+                {% for i in pagamentos %}
+                    <div style="margin-top: 30px; margin-right: 25px;" class="border margin camp">
+                        <h3>{{i.despesa.name}}</h3>
+                        <p>Valor: {{i.pagamento.valor}}</p>
+                        <p>Data: {{i.pagamento.data}}</p>
+                        <p>Forma de Pagamento: {{i.tipo}}</p>
+                    </div>
+                {% endfor %}
+            </div>
+            
+        {% else %}
+            <div>
+                <h4>Nenhum pagamento foi realizado com este cartão</h4>
+            </div>
+
+        {% endif %}
+
+    </div>
+
+    <div class="line">
+        <a href=""><button class="line bt2">Editar Cartão</button></a>
+        <a href=""><button class="line bt2">Excluir Cartão</button></a>
+    </div>
+
+
+
+</div>
+{% endblock %}
