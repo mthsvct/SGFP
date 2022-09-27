@@ -157,8 +157,21 @@ def cadUserPagamento(id_user):
         'boletos': {'name': 'Boleto', 'pagos': [], 'tipo': 1}, # pagos é um array que salvará os ids das despesas pagas com este método de pagamento.
         'pix': {'name': 'Pix', 'pagos': [], 'tipo': 2},
         'especie': {'name': 'Em Especie', 'pagos': [], 'tipo': 3},
-        'cartoes': [] # Cartões são do tipo 4.
+        'cartoes': {
+            'name': 'Cartão', 
+            'pagos': [], 
+            'tipo': 3, 
+            'personalizados': [],
+            "control": {
+                "counter": 0,
+                "last_id": 0
+            }
+        }, # Cartões são do tipo 4.
+        "control": {
+            "counter": 0,
+            "last_id": 0
+        },
+        'itens':[]
     }
     db['pagamento'].insert_one(p)
-
 

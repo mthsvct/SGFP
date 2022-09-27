@@ -2,12 +2,24 @@ from django.shortcuts import redirect, render
 from django.http import HttpResponse
 from hashlib import sha256
 
+from users.views import db
 
 def home(request):
     aux = verificaLogado(request)
 
     if aux['logado'] == True:
-        return render(request, 'home.html', {'user': aux['resposta']})
+        id_user = request.session['user']['id']
+        pg = db['pagamento'].find_one({'id_user': id_user})
+        return render(request, 'home.html', {
+            'user': aux['resposta'],
+            'qnt_pagos': {
+                'cartoes': len(pg['cartoes']['pagos']),
+                'boletos': len(pg['boletos']['pagos']),
+                'pix': len(pg['pix']['pagos']),
+                'especie': len(pg['especie']['pagos']),
+            }
+            }
+        )
     else:
         return aux['resposta']
 

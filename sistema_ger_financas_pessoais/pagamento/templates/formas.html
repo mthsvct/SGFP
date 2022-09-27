@@ -1,21 +1,16 @@
-{% extends 'base.html' %}
+{% extends 'baseUsuario.html' %}
 {% load static %}
 
-{% block 'titulo' %}Página Inicial{% endblock %} 
+{% block 'titulo' %}Formas de Pagamento{% endblock %} 
 
 {% block 'head' %}
 {% endblock %}
 
 {% block 'conteudo' %}
+<div class="dentroConteudo">
+    <h1>Formas de Pagamento</h1>
 
-<div class="line"> 
-
-    <div class="perfil" style="margin-bottom: 20px;">
-        <!-- <img src="{% static 'img/profile.svg' %}" alt=""> -->
-        <h1>Olá, {{user.name}}!</h1>
-    </div>
-
-    <!-- <h1>Bem vindo, {{user.name}}!</h1> -->
+    
 
     <div class="tabela" style="display: flex;">
         
@@ -65,38 +60,47 @@
 
     </div>
 
-    <div class="line"> 
-        <a href="{% url 'configurar' %}"><button class="line bt2">Guardar Dinheiro</button></a>
-        <a href="{% url 'renda' %}"><button class="line bt2">Cadastrar renda</button></a>
-        <a href="{% url 'poupanca' %}"><button class="line bt2">Poupança</button></a>
-        <a href="{% url 'categories' %}"><button class="line bt2">Categorias</button></a>
-        <a href="{% url 'despesas' %}"><button class="line bt2">Despesas</button></a>
-        <a href="{% url 'pagamentos' %}"><button class="line bt2">Pagamentos</button></a> 
-        <a href="{% url 'pagamentos' %}"><button class="line bt2">Pagamentos</button></a>
-        <a href="{% url 'formas' %}"><button class="line bt2">Formas de Pagamento</button></a>
+    <div style="margin-top: 25px;">
+        <h1>Cartões Cadastrados:</h1>
+        
+        {% if status == '1' %}
+            <div class="alerta certo">
+                <p>Cartão excluido com sucesso!</p> 
+            </div>
+        {% endif %}
+        
+        {% if qnt_cartoes > 0 %}    
 
-        <a href="{% url 'configuracoes' %}"><button class="line bt2">Configurações</button></a>
-        <a href="{% url 'sair' %}"><button class="line bt2">Sair</button></a>
+            <div style="display: flex;">
+                {% for i in pagamento.cartoes.personalizados %}
+                    <a href="{% url 'cartao' i.id %}">
+                        <div class="camp border margem" style="padding-top: 25px; padding-bottom: 25px;">
+                            <h3>{{i.banco}}</h3>
+                            <p>{{i.limite}} R$</p>
+                            <p>{{i.vencimento}}</p>
+                        </div>    
+                    </a>
+                    
+                {% endfor %}
+            </div>
+            
+
+
+        {% else %}
+            <p>
+                Nenhum cartão foi cadastrado até o momento.
+            </p>
+        {% endif %}
     </div>
 
-    <div>
-        <div  id="gr1"></div>
 
-        <div  id="gr2"></div>
-
-        <div  id="gr3"></div>
+    <div class="line">
+        <a href="{% url 'cadastrar_cartao' %}"><button class="line bt2">Adicionar Cartão</button></a>
     </div>
+
+
 
 </div>
-   
-    
-    
-    
-    
 
-
-     
-   
-    
-    
+<!-- <p>{{qnt_pagos}}</p> -->
 {% endblock %}
