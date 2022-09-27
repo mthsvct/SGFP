@@ -3,6 +3,35 @@ from django.http import HttpResponse
 from hashlib import sha256
 
 from users.views import db
+from despesas.views import despesasDB, pegaStatus
+
+
+def atualizaStatus(id_user):
+    d = db['despesas'].find_one({'id_user': id_user})
+    for i in d['itens']:
+        if i['status'] != 1:
+            i['status'] = pegaStatus(i['vencimento'])
+    db['despesas'].update_one({'id_user': id_user}, {'$set': d})
+
+def despesas_perto(id_user):
+    concluidas = []
+    em_andamento = []
+    atrasadas = []
+    d = db['despesas'].find_one({'id_user': id_user})
+
+    for i in d['itens']:
+        if i['status'] == 1:
+            concluidas.append(i)
+        elif i['status'] == 2:
+            em_andamento.append(i)
+        else:
+            atrasadas.append(i)
+
+    return {
+        'concluidas': {'itens': concluidas, 'qnt': len(concluidas)},
+        'em_andamento': {'itens': em_andamento, 'qnt': len(em_andamento)},
+        'atrasadas': {'itens': atrasadas, 'qnt': len(atrasadas)}
+    }
 
 def home(request):
     aux = verificaLogado(request)
@@ -10,6 +39,10 @@ def home(request):
     if aux['logado'] == True:
         id_user = request.session['user']['id']
         pg = db['pagamento'].find_one({'id_user': id_user})
+
+        atualizaStatus(id_user)
+        des = despesas_perto(id_user)
+
         return render(request, 'home.html', {
             'user': aux['resposta'],
             'qnt_pagos': {
@@ -17,7 +50,8 @@ def home(request):
                 'boletos': len(pg['boletos']['pagos']),
                 'pix': len(pg['pix']['pagos']),
                 'especie': len(pg['especie']['pagos']),
-            }
+            },
+            'despesas': des
             }
         )
     else:

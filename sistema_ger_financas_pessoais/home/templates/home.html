@@ -87,6 +87,94 @@
         <div  id="gr3"></div>
     </div>
 
+
+    <div style="width: 100%;">
+
+        <!-- {{despesas}} -->
+
+
+        <div class="concluidas border" style="margin-top: 25px;" >
+            <h3>Concluídas</h3>
+
+            <div class="border margin" style="max-width: 100px; display: flex; flex-direction: column; justify-content: center; align-items: center;">
+                <p>Quantidade</p>
+                <h2>{{despesas.concluidas.qnt}}</h2>
+                <p>Despesas</p>
+            </div>
+
+            <div class="itens" style="display: flex;">
+                {% for i in despesas.concluidas.itens %}
+                    <a href="{% url 'despesa' i.id %}" style="display: flex; min-width: 250px; background-color: yellowgreen; border-radius: 10px;">
+                        <div class="border">
+                            <p>Nome: <strong>{{i.name}}</strong></p>
+                            <p>Valor Total: <strong>{{i.valor.completo}}</strong></p>
+                            <p>Valor Pago: <strong>{{i.valor.pago}}</strong></p>
+                            <p>Vencimento: <strong>{{i.vencimento}}</strong></p>
+                        </div>
+                    </a>
+                    
+                {% endfor %}
+
+            </div>
+
+
+
+        </div>
+
+        <div class="em_andamento border" style="margin-top: 25px;" >
+            <h3>Em Andamento</h3>
+
+            <div class="border margin" style="max-width: 100px; display: flex; flex-direction: column; justify-content: center; align-items: center;">
+                <p>Quantidade</p>
+                <h2>{{despesas.em_andamento.qnt}}</h2>
+                <p>Despesas</p>
+            </div>
+
+            <div class="itens" style="display: flex;">
+                {% for i in despesas.em_andamento.itens %}
+                    <a href="{% url 'despesa' i.id %}" style="display: flex; min-width: 250px; background-color: yellow; border-radius: 10px;">
+                        <div class="border">
+                            <p>Nome: <strong>{{i.name}}</strong></p>
+                            <p>Valor Total: <strong>{{i.valor.completo}}</strong></p>
+                            <p>Valor Pago: <strong>{{i.valor.pago}}</strong></p>
+                            <p>Vencimento: <strong>{{i.vencimento}}</strong></p>
+                        </div>
+                    </a>
+                {% endfor %}
+
+            </div>
+
+
+
+        </div>
+
+        <div class="em_andamento border" style="margin-top: 25px;" >
+            <h3>Atrasadas</h3>
+
+            <div class="border margin" style="max-width: 100px; display: flex; flex-direction: column; justify-content: center; align-items: center;">
+                <p>Quantidade</p>
+                <h2>{{despesas.atrasadas.qnt}}</h2>
+                <p>Despesas</p>
+            </div>
+
+            <div class="itens" style="display: flex;">
+                {% for i in despesas.atrasadas.itens %}
+                    <a href="{% url 'despesa' i.id %}" style="display: flex; min-width: 250px; background-color: red; border-radius: 10px;">
+                        <div class="border">
+                            <p>Nome: <strong>{{i.name}}</strong></p>
+                            <p>Valor Total: <strong>{{i.valor.completo}}</strong></p>
+                            <p>Valor Pago: <strong>{{i.valor.pago}}</strong></p>
+                            <p>Vencimento: <strong>{{i.vencimento}}</strong></p>
+                        </div>
+                    </a>
+                {% endfor %}
+
+            </div>
+
+        </div>
+
+    </div>
+
 </div>
    
     

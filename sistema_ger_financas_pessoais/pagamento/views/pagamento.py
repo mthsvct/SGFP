@@ -95,7 +95,12 @@ def validaPagamento(request,  idDes):
     id_user = request.session['user']['id']
     tipo = int(request.POST['tipo'])
     valor = float(request.POST['valor'])
-    cartao = int(request.POST['cartao'])
+
+    if 'cartao' in request.POST:
+        cartao = int(request.POST['cartao'])
+    else:
+        cartao = -1
+
     data = request.POST['data']
 
     d = despesasDB.find_one({'id_user': id_user})
