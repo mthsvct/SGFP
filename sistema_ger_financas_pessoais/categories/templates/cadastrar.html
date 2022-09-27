@@ -1,4 +1,4 @@
-{% extends 'baseUsuario.html' %}
+{% extends 'base.html' %}
 {% load static %}
 
 {% block 'titulo' %}Cadastrar Categoria{% endblock %} 
@@ -7,7 +7,7 @@
 {% endblock %}
 
 {% block 'conteudo' %}
-    <h2>Cadastrar uma nova Categoria</h2>
+    <h2>Cadastrar uma nova categoria</h2>
 
     {% if status == '0'%}
         <div class="alerta certo">
@@ -25,7 +25,11 @@
         <label for="colorDesc">Cor:</label>
         <input style="height: 100px;" type="color" name="colorDesc" id="colorDesc">
 
-        <input type="submit" class="bt2" value="Cadastrar">
+        <div class="camp">
+            <button type="submit" class="bt2">Cadastrar</button>
+        </div>
+        
+        
 
     </form>
 {% endblock %}
