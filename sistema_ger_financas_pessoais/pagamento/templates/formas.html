@@ -10,6 +10,8 @@
 <div class="dentroConteudo">
     <h1>Formas de Pagamento</h1>
 
+    
+
     <div class="tabela" style="display: flex;">
         
         <div class="camp border margem">
@@ -59,9 +61,15 @@
     </div>
 
     <div style="margin-top: 25px;">
-        {% if qnt_cartoes > 0 %}
-
-            <h1>Cartões Cadastrados:</h1>
+        <h1>Cartões Cadastrados:</h1>
+        
+        {% if status == '1' %}
+            <div class="alerta certo">
+                <p>Cartão excluido com sucesso!</p> 
+            </div>
+        {% endif %}
+        
+        {% if qnt_cartoes > 0 %}    
 
             <div style="display: flex;">
                 {% for i in pagamento.cartoes.personalizados %}

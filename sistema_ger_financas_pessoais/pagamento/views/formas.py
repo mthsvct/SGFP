@@ -14,6 +14,7 @@ def formas(request):
     id_user = request.session['user']['id']
     pg = pgDB.find_one({'id_user': id_user})
     cartoes = pg['cartoes']['personalizados']
+    status = request.GET.get('status')
     return render(request, 'formas.html', 
         {
             'cartoes': cartoes,
@@ -25,5 +26,6 @@ def formas(request):
                 'pix': len(pg['pix']['pagos']),
                 'especie': len(pg['especie']['pagos']),
             },
+            'status': status
         }
     )

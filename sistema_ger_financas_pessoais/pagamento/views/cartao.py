@@ -8,7 +8,7 @@ from hashlib import sha256
 
 from users.views import db, atualizaControl
 from categories.views import categoriesDB, buscaCat
-from despesas.views import despesasDB, buscaDespesa
+from despesas.views import despesasDB, buscaDespesa, pegaStatus, buscaPagamento_despesa
 
 
 pgDB = db['pagamento']
@@ -62,12 +62,63 @@ class Cartao():
             self.utilizado = c['utilizado']
             self.id_user = p['id_user']
             self.pagos = c['pagos']
+        
+        return self
 
     def add_pagamento(self, pagamento):
         p = pgDB.find_one({'id_user': self.id_user})
         p['cartoes']['personalizados'][self.indice]['pagos'].append(pagamento['id'])
         pgDB.update_one({'id_user': self.id_user}, {'$set': p})
         self.monta_cartao(self.id)
+    
+    def salvar(self):
+        p = pgDB.find_one({'id_user': self.id_user})
+        p['cartoes']['personalizados'][self.indice] = self.monta_objeto()
+        pgDB.update_one({'id_user': self.id_user}, {'$set': p})
+
+    def editar(self, banco, limite, vencimento):
+        self.banco = banco
+        self.limite = limite
+        self.vencimento = vencimento
+        self.salvar()
+
+    def volta_despesa(self):
+        p = pgDB.find_one({'id_user': self.id_user})
+        d = despesasDB.find_one({'id_user': self.id_user})
+
+        for i in self.pagos:
+            # Remover da lista dos itens pagos por cartoes:
+            # remove = []
+
+            for index, j in enumerate(p['cartoes']['pagos']):
+                if j['id_cartao'] == self.id:
+                    p['cartoes']['pagos'].remove(j)
+            
+            # Remover da lista do itens dos pagamentos:
+            for index2, j in enumerate(p['itens']):
+                if j['id'] == i:
+
+                    _, indiceD = buscaDespesa(d['itens'], j['id_des'])
+
+                    d['itens'][indiceD]['valor']['pago'] = d['itens'][indiceD]['valor']['pago'] - j['valor']
+                    d['itens'][indiceD]['valor']['restante'] = d['itens'][indiceD]['valor']['completo'] - d['itens'][indiceD]['valor']['pago']
+
+                    p['itens'].remove(j)  
+        
+        pgDB.update_one({'id_user': self.id_user}, {'$set': p})
+        despesasDB.update_one({'id_user': self.id_user}, {'$set': d})
+
+    def excluir(self):
+
+        if len(self.pagos) > 0:
+            self.volta_despesa()
+            # print('Ah, mas que pertubação!!!!!!!!!!!!')
+        
+        p = pgDB.find_one({'id_user': self.id_user})
+        p['cartoes']['personalizados'].pop(self.indice)
+        pgDB.update_one({'id_user': self.id_user}, {'$set': p})
+
+
 
 def busca_cartao(id_cartao, cartoes):
     retorno = None
@@ -91,11 +142,11 @@ def validaCadCartao(request):
     return redirect(f'/pagamento/cadastrar_cartao/?status=0')
 
 def buscaPagamento(pagamento, idPg):
-    for i in pagamento['itens']:
+    for index, i in enumerate(pagamento['itens']):
         if idPg == i['id']:
-            return i
+            return i, index
 
-    return None
+    return None, -1
 
 def verTipo(tipo):
     if tipo == 1:
@@ -113,7 +164,7 @@ def pegaPagamentos(cartao, id_user):
     p = pgDB.find_one({'id_user': id_user})
 
     for i in cartao.pagos:
-        pg = buscaPagamento(p, i)
+        pg, _ = buscaPagamento(p, i)
         print('\n\n', pg, '\n\n')
         despesa, _ = buscaDespesa(d['itens'], pg.get('id_des'))
 
@@ -145,5 +196,40 @@ def registraPagamentoNoCartao(pagamento, cartao):
     c.monta_cartao(cartao)
     c.add_pagamento(pagamento)
 
+def edita_cartao(request, idCartao):
+    id_user = request.session['user']['id']
+    c = Cartao(id_user = id_user)
+    c.monta_cartao(idCartao)
+    cartao = c.monta_objeto()
+    status = request.GET.get('status')
+    return render(request, 'edita_cartao.html', {
+        'cartao': cartao,
+        'limite': str(cartao['limite']),
+        'status': status
+        }
+    )
 
+def valida_edita_cartao(request, idCartao):
+    id_user = request.session['user']['id']
+    c = Cartao(id_user=id_user)
+    c.monta_cartao(idCartao)
 
+    c.editar(
+        banco=request.POST['banco'],
+        limite=float(request.POST['limite']),
+        vencimento=request.POST['vencimento']
+    )
+
+    return redirect(f'/pagamento/edita_cartao/{idCartao}/?status=0')
+
+def exclui_cartao(request, idCartao):
+    id_user = request.session['user']['id']
+    c = Cartao(id_user=id_user).monta_cartao(idCartao)
+    c.excluir()
+    return redirect('/pagamento/formas/?status=1')
+
+def buscaPagamentoNoTipo(pagamentos, indice, idP, tipo):
+    for index, i in enumerate(pagamentos[verTipo(tipo)]['pagos']):
+        if i['id_pg'] == idP:
+            return i, index
+    return None, -1

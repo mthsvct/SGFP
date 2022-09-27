@@ -46,11 +46,25 @@
     </div>
 
     <div class="line">
-        <a href=""><button class="line bt2">Editar Cartão</button></a>
-        <a href=""><button class="line bt2">Excluir Cartão</button></a>
+        <a href="{% url 'edita_cartao' cartao.id %}"><button class="line bt2">Editar Cartão</button></a>
+        {% if qnt > 0 %}
+            <a href="{% url 'exclui_cartao' cartao.id %}" onclick="tem_certeza()"><button class="line bt2">Excluir Cartão</button></a>
+        {% else %}
+            <a href="{% url 'exclui_cartao' cartao.id %}"><button class="line bt2">Excluir Cartão</button></a>
+        {% endif %}
     </div>
 
 
 
 </div>
+
+<script>
+
+    function tem_certeza(){
+        let a = confirm('O cartão que deseja excluir possui pagamentos realizados nele. Logo, ao apagar essas despesas voltarão ao estágio de pendentes. Tem certeza?');
+    }
+
+</script>
+
+
 {% endblock %}

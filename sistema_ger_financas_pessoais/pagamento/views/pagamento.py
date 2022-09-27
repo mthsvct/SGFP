@@ -59,7 +59,11 @@ def efetuarPagamento(id_user, pagamento, ind_des):
     restante = despesa['itens'][ind_des]['valor']['restante'] - pagamento['valor']
     despesa['itens'][ind_des]['valor']['restante'] = round(restante, 2)
     despesa['itens'][ind_des]['valor']['pago'] += pagamento['valor']
-    despesa['itens'][ind_des]['pagamento'].append(pagamento['id'])
+
+    if despesa['itens'][ind_des]['valor']['restante'] <= 0:
+        despesa['itens'][ind_des]['status'] = 1
+
+    #despesa['itens'][ind_des]['pagamento'].append(pagamento['id'])
     despesasDB.update_one({'id_user': id_user}, {'$set': despesa})
 
 def criaPagamentoBasico(id_user, id_des, valor, data, tipo, cartao, ind_des):

@@ -92,6 +92,7 @@ def pegaStatus(vencimento):
 
     return retorno
 
+
 def atualizaControlItens(collection):
     # Este atualiza as collections de Despesas e Categorias
     collection['control']['counter'] = len(collection['itens'])

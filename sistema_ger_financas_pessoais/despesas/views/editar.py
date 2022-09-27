@@ -79,3 +79,9 @@ def validaEditDes(request, idDes):
     ) # Atualiza
     
     return redirect(f'/despesas/editDes/{idDes}/?status=0')
+
+def buscaPagamento_despesa(despesa, indice, idP):
+    for index, i in enumerate(despesa['itens'][indice]['pagamento']):
+        if i == idP:
+            return i, index
+    return None, -1
